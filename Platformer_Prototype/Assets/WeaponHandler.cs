@@ -6,34 +6,71 @@ public class WeaponHandler : MonoBehaviour
 {
     int m_iCurrentWeapon;
     public GameObject[] m_goWeapons;
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         m_iCurrentWeapon = 0;
-
+        for (int i = 0; i < 3; i++)
+        {
+            if (i != m_iCurrentWeapon)
+            {
+                m_goWeapons[i].SetActive(false);
+            }
+        }
+        // m_goWeapons = new GameObject[3];
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    private void HandleWeaponSwitch()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i != m_iCurrentWeapon)
+            {
+                m_goWeapons[i].SetActive(false);
+            }
+            else
+            {
+                m_goWeapons[i].SetActive(true);
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         var d = Input.GetAxis("Mouse ScrollWheel");
-        if (d > 0f)
+        if (d != 0)
         {
-            while (m_iCurrentWeapon >= 0)
+            if (d > 0f)
             {
-                m_iCurrentWeapon -= 1;
+                if (m_iCurrentWeapon >= 0)
+                {
+                    m_iCurrentWeapon -= 1;
+                    print(m_iCurrentWeapon);
+                }
+                // scroll up
             }
-            print(m_iCurrentWeapon);
-            // scroll up
+            else if (d < 0f)
+            {
+                if (m_iCurrentWeapon <= 2)
+                {
+                    m_iCurrentWeapon += 1;
+                    print(m_iCurrentWeapon);
+
+                }
+            }
+            HandleWeaponSwitch();
         }
-        else if (d < 0f)
+        if (m_iCurrentWeapon > 2 || m_iCurrentWeapon < 0)
         {
-            while (m_iCurrentWeapon <= 2)
+            if (m_iCurrentWeapon > 2)
             {
-                m_iCurrentWeapon += 1;
+                m_iCurrentWeapon = 2;
             }
-            print(m_iCurrentWeapon);
-            // scroll down
+            else
+            {
+                m_iCurrentWeapon = 0;
+            }
         }
     }
 }
