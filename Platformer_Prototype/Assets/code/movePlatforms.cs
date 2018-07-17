@@ -2,21 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movePlatforms : MonoBehaviour {
+public class movePlatforms : MonoBehaviour
+{
     public GameObject[] place;
-   
+    //public BoxCollider Floor;
+    //public BoxCollider PlayerOnPlatform;
     int aim = 0;
     public int speed = 5;
+    bool playerIsOn = false;
+    player play;
     // Use this for initialization
-    void Start() {
-
+    void Start()
+    {
+        play = FindObjectOfType<player>();
     }
 
     // Update is called once per frame
-    void Update() {
-      
-        transform.position = Vector3.MoveTowards(transform.position, place[aim].transform.position, speed*Time.deltaTime);
-        if (Vector3.Distance(transform.position, place[aim].transform.position) <= 2)
+    void Update()
+    {
+
+        transform.position = Vector3.MoveTowards(transform.position, place[aim].transform.position, speed * Time.deltaTime);
+        //print(play.ExtraVel);
+        if (playerIsOn == true)
+        {
+           
+            Vector3 dummy = Vector3.MoveTowards(play.transform.position, transform.position, speed * Time.deltaTime) ;
+            dummy.y = play.transform.position.y;
+            play.transform.position = dummy;
+            print(play.ExtraVel);
+        }
+        if (Vector3.Distance(transform.position, place[aim].transform.position) <= 0.2)
         {
             changeAim();
         }
@@ -26,14 +41,35 @@ public class movePlatforms : MonoBehaviour {
 
     void changeAim()
     {
-        if (aim == place.Length-1)
+        if (aim == place.Length - 1)
         {
             aim = 0;
 
         }
-        else {
+        else
+        {
             aim++;
 
+        }
+    }
+    void OnCollisionStay(Collision Col)
+    {
+        if (Col.gameObject.tag == "Player")
+        {
+            playerIsOn = true;
+            //Col.getcompo
+            print("yes");
+            //Col.transform.position = Vector3.MoveTowards(Col.transform.position, place[aim].transform.position, speed * Time.deltaTime);
+        }
+    }
+    void OnCollisionExit(Collision Col)
+    {
+        if (Col.gameObject.tag == "Player")
+        {
+            play.ExtraVel = Vector3.zero;
+            playerIsOn = false;
+            print("no");
+            //Col.transform.position = Vector3.MoveTowards(Col.transform.position, place[aim].transform.position, speed * Time.deltaTime);
         }
     }
 }

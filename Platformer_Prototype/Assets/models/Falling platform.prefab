@@ -24,10 +24,11 @@ GameObject:
   - component: {fileID: 23378885313315772}
   - component: {fileID: 54016405508582772}
   - component: {fileID: 65044437756050128}
+  - component: {fileID: 114513326026494124}
   - component: {fileID: 114683037778668458}
   m_Layer: 0
   m_Name: Falling platform
-  m_TagString: Untagged
+  m_TagString: playforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +59,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -97,7 +99,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -111,7 +113,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 1.1, y: 2, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65197424304640202
 BoxCollider:
@@ -125,6 +127,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114513326026494124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749506921217206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824fce9362694864188f48151b7c9928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114683037778668458
 MonoBehaviour:
   m_ObjectHideFlags: 1
