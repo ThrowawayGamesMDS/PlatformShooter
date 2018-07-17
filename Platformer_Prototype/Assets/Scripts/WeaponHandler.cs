@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
-    int m_iCurrentWeapon;
+    public static int m_iCurrentWeapon;
     public GameObject[] m_goWeapons;
+    public static GameObject m_gActiveWeapon;
     // Use this for initialization
     void Start()
     {
@@ -17,7 +18,26 @@ public class WeaponHandler : MonoBehaviour
                 m_goWeapons[i].SetActive(false);
             }
         }
+        m_gActiveWeapon = m_goWeapons[m_iCurrentWeapon];
         // m_goWeapons = new GameObject[3];
+    }
+
+    public static string CurrentGun()
+    {
+        var _s = "";
+        switch (m_iCurrentWeapon)
+        {
+            case 0:
+                _s = "Pistol";
+                break;
+            case 1:
+                _s = "Shonny";
+                break;
+            case 2:
+                _s = "Bazzy";
+                break;
+        }
+        return _s;
     }
 
     private void HandleWeaponSwitch()
@@ -33,6 +53,7 @@ public class WeaponHandler : MonoBehaviour
                 m_goWeapons[i].SetActive(true);
             }
         }
+        m_gActiveWeapon = m_goWeapons[m_iCurrentWeapon];
     }
 
     // Update is called once per frame
@@ -43,7 +64,7 @@ public class WeaponHandler : MonoBehaviour
         {
             if (d > 0f)
             {
-                if (m_iCurrentWeapon >= 0)
+                if (m_iCurrentWeapon > 0)
                 {
                     m_iCurrentWeapon -= 1;
                     print(m_iCurrentWeapon);
@@ -61,6 +82,7 @@ public class WeaponHandler : MonoBehaviour
             }
             HandleWeaponSwitch();
         }
+
         if (m_iCurrentWeapon > 2 || m_iCurrentWeapon < 0)
         {
             if (m_iCurrentWeapon > 2)
