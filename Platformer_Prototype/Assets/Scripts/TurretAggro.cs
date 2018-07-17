@@ -7,6 +7,8 @@ public class TurretAggro : MonoBehaviour
 
     public enum eAIMode { Idle, Alert, Aggro };
     public eAIMode myAIMode;
+    public GameObject playerObj;
+    public float damping;
     // Use this for initialization
     void Start()
     {
@@ -28,7 +30,10 @@ public class TurretAggro : MonoBehaviour
                 }
             case eAIMode.Aggro:
                 {
-
+                    Vector3 lookpos = playerObj.transform.position - transform.position;
+                    lookpos.y = 0;
+                    Quaternion rotation = Quaternion.LookRotation(lookpos);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
                     break;
                 }
 
