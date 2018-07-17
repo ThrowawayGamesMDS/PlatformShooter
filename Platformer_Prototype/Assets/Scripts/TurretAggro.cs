@@ -16,7 +16,6 @@ public class TurretAggro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(myAIMode);
         switch (myAIMode)
         {
             case eAIMode.Idle:
@@ -29,6 +28,7 @@ public class TurretAggro : MonoBehaviour
                 }
             case eAIMode.Aggro:
                 {
+
                     break;
                 }
 
@@ -41,6 +41,7 @@ public class TurretAggro : MonoBehaviour
         if (other.tag == "Player")
         {
             myAIMode = eAIMode.Aggro;
+            Debug.Log(myAIMode);
         }
     }
     void OnTriggerExit(Collider other)
@@ -48,6 +49,7 @@ public class TurretAggro : MonoBehaviour
         if (other.tag == "Player")
         {
             myAIMode = eAIMode.Idle;
+            Debug.Log(myAIMode);
         }
     }
 }
