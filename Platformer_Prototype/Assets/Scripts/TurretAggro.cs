@@ -9,7 +9,6 @@ public class TurretAggro : MonoBehaviour
     public eAIMode myAIMode;
     public GameObject playerObj;
     public float damping;
-    public Transform endofturret;
     // Use this for initialization
     void Start()
     {
@@ -35,20 +34,6 @@ public class TurretAggro : MonoBehaviour
                     lookpos.y = 0;
                     Quaternion rotation = Quaternion.LookRotation(lookpos);
                     transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-
-                    if(Input.GetKeyDown(KeyCode.P))
-                    {
-                        Vector3 rayOrigin = endofturret.position;
-                        Vector3 rayDirection = playerObj.transform.position - endofturret.position;
-                        RaycastHit hit;
-                        if (Physics.Raycast(endofturret.position, rayDirection, out hit))
-                        {
-                            Debug.DrawRay(endofturret.position, rayDirection, Color.yellow);
-                        }
-                    }
-                    
-
-
                     break;
                 }
 
