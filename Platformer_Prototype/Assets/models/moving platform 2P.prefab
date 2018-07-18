@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 54194118853046724}
   - component: {fileID: 65790481394176468}
   - component: {fileID: 114551189011919430}
+  - component: {fileID: 114960720578146822}
   m_Layer: 0
   m_Name: moving platforms
   m_TagString: Untagged
@@ -84,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1124094249977322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.17139, y: -0.44064665, z: -12.530872}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 0.15, z: 10}
   m_Children: []
   m_Father: {fileID: 4457521580119200}
@@ -97,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1589750952002708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.171387, y: 0.44064665, z: 36.51087}
+  m_LocalPosition: {x: 11.69, y: 0, z: 26.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4827294605241436}
@@ -113,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057933091303740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.828613, y: -0.44064665, z: -12.530872}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 0.15, z: 10}
   m_Children: []
   m_Father: {fileID: 4457521580119200}
@@ -126,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508190838224952}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 0.15, z: 10}
   m_Children: []
   m_Father: {fileID: 4457521580119200}
@@ -145,6 +146,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -226,3 +228,16 @@ MonoBehaviour:
   place:
   - {fileID: 1057933091303740}
   - {fileID: 1124094249977322}
+  speed: 5
+--- !u!114 &114960720578146822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508190838224952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a733413e1505f7e4c980ee99265bca5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastPlace: {x: 0, y: 0, z: 0}

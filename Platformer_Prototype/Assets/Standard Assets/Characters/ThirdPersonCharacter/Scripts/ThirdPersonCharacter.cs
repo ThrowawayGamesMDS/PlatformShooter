@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
-		bool m_IsGrounded;
+		public bool m_IsGrounded;
 		float m_OrigGroundCheckDistance;
 		const float k_Half = 0.5f;
 		float m_TurnAmount;
@@ -206,11 +206,28 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// helper to visualise the ground check ray in the scene view
 			Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
 #endif
-			// 0.1f is a small offset to start the ray from inside the character
-			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
+            // 0.1f is a small offset to start the ray from inside the character
+            // it is also good to note that the transform position in the sample assets is at the base of the character
+           
+            if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
 			{
-				m_GroundNormal = hitInfo.normal;
+                print("hit");
+                //hitInfo need to send a message to the ground to see if it with trigger floor falling
+                if (hitInfo.collider.gameObject.tag == "Fplatform")
+                {
+                    print("plsF");
+                    hitInfo.collider.gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.fallPlatform>().playerON();
+                    hitInfo.collider.gameObject.GetComponent<platformMovingEffect>().Action();
+                }
+                else
+                {
+                    if (hitInfo.collider.gameObject.tag == "Mplatform")
+                    {
+                        hitInfo.collider.gameObject.GetComponent<platformMovingEffect>().Action();
+                        //hitInfo.collider.gameObject.GetComponent<>();
+                    }
+                }
+                m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;
 			}

@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 54092738691844560}
   - component: {fileID: 65982536455369482}
   - component: {fileID: 114227677785017394}
+  - component: {fileID: 114739772625385402}
   m_Layer: 0
   m_Name: moving platforms
   m_TagString: Untagged
@@ -95,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436024593637168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.4, y: 0, z: 44.6}
+  m_LocalPosition: {x: 11.11, y: 0, z: 44.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4447970243791822}
@@ -116,6 +117,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -197,3 +199,15 @@ MonoBehaviour:
   place:
   - {fileID: 1498278985030948}
   speed: 20
+--- !u!114 &114739772625385402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1570809673159166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a733413e1505f7e4c980ee99265bca5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastPlace: {x: 0, y: 0, z: 0}
