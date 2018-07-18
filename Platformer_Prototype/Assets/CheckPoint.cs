@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour {
     public GameObject player;
     public float dis;
+    bool lastOne = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,9 +19,19 @@ public class CheckPoint : MonoBehaviour {
         RaycastHit hit;
         
         Debug.DrawRay(transform.position, raycastDir*dis, Color.blue);
-      
-        if (Physics.Raycast(transform.position,raycastDir,5.0f)) { 
-           print("check point"); 
+
+
+        if (lastOne == true)
+        {
+
+            if (Physics.Raycast(transform.position, raycastDir, out hit))
+            {
+                if (hit.distance <= 10.0f)
+                {
+                    print("check point");
+                }
+
+            }
         }
     }
 }
