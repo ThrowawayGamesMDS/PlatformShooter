@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: 1ce686135893bcc4fbd6d91c07d684e4
+guid: df9c493d850d538449fe0f4fd3280046
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: SiloAttachment1
     400000: //RootNode
-    400002: SiloAttachment1
-    2100000: SiloAttachment1Mat
-    2300000: SiloAttachment1
-    3300000: SiloAttachment1
-    4300000: SiloAttachment1
-    2186277476908879412: ImportLogs
+    2100000: lambert1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: WoodBox
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -87,7 +85,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
