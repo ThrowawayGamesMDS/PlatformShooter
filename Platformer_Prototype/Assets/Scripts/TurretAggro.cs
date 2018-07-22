@@ -46,23 +46,30 @@ public class TurretAggro : MonoBehaviour
                     {
                         Vector3 rayOrigin = endofturret.position;
                         Vector3 rayDirection = playerObj.transform.position - endofturret.position;
-                        //Debug.Log(rayDirection);
-                        rayDirection.x += Random.Range(-turretAccuracy, turretAccuracy);
-                        rayDirection.z += Random.Range(-turretAccuracy, turretAccuracy);
-                        rayDirection.y += Random.Range(-turretAccuracy, turretAccuracy);
                         RaycastHit hit;
-                        if (Physics.Raycast(endofturret.position, rayDirection, out hit, 100))
+                        if(Physics.Raycast(endofturret.position, rayDirection, out hit, 100))
                         {
-                            Debug.DrawRay(endofturret.position, rayDirection, Color.yellow);
-                            Debug.Log(hit.transform.name);
-                            Instantiate(ball, hit.point, ball.transform.rotation);
+                            if(hit.transform.tag == "Player")
+                            {
+                                rayDirection.x += Random.Range(-turretAccuracy, turretAccuracy);
+                                rayDirection.z += Random.Range(-turretAccuracy, turretAccuracy);
+                                rayDirection.y += Random.Range(-turretAccuracy, turretAccuracy);
+
+                                if (Physics.Raycast(endofturret.position, rayDirection, out hit, 100))
+                                {
+                                    Debug.DrawRay(endofturret.position, rayDirection, Color.yellow);
+                                    //Debug.Log(hit.transform.name);
+                                    Instantiate(ball, hit.point, ball.transform.rotation);
+                                }
+                                else
+                                {
+                                    Debug.DrawRay(endofturret.position, rayDirection, Color.white);
+                                }
+                                gunShotSound.Play();
+                                turretCooldown = Time.time + fireRate;
+                            }
                         }
-                        else
-                        {
-                            Debug.DrawRay(endofturret.position, rayDirection, Color.white);
-                        }
-                        gunShotSound.Play();
-                        turretCooldown = Time.time + fireRate;
+                        
                     }
                     break;
                 }
