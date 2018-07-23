@@ -22,6 +22,12 @@ public class TurretAggro : MonoBehaviour
         myAIMode = eAIMode.Idle;
     }
 
+    void TurretFucked()
+    {
+        this.gameObject.SetActive(false);
+        print("This turret got HIT BRUH");
+    }
+
     // Update is called once per frame
     void Update()
     {
