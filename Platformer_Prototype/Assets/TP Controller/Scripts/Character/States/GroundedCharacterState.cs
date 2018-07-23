@@ -24,9 +24,11 @@ public class GroundedCharacterState : CharacterStateBase
             character.Jump();
             this.ToState(character, CharacterStateBase.JUMPING_STATE);
         }
+        
         else if (!character.IsGrounded)
         {
             this.ToState(character, CharacterStateBase.IN_AIR_STATE);
+            //IN_AIR_STATE
         }
     }
 }

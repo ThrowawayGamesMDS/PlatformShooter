@@ -21,5 +21,10 @@ public class InAirCharacterState : CharacterStateBase
         {
             this.ToState(character, CharacterStateBase.GROUNDED_STATE);
         }
+        if (PlayerInput.GetJumpInput())
+        {
+            this.ToState(character, CharacterStateBase.JUMPING_STATE);
+
+        }
     }
 }

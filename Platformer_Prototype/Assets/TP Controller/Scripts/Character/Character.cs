@@ -27,7 +27,9 @@ public class Character : MonoBehaviour
     private float targetHorizontalSpeed; // In meters/second
     private float currentHorizontalSpeed; // In meters/second
     private float currentVerticalSpeed; // In meters/second
-
+    public int ExtraJump;
+    public int maxJump;
+   // public Transform savehome;
     #region Unity Methods
 
     protected virtual void Awake()
@@ -35,8 +37,10 @@ public class Character : MonoBehaviour
         this.controller = this.GetComponent<CharacterController>();
 
         this.CurrentState = CharacterStateBase.GROUNDED_STATE;
-
+       
         this.IsJogging = true;
+
+        maxJump = ExtraJump;
     }
 
     protected virtual void Update()
@@ -264,7 +268,10 @@ public class Character : MonoBehaviour
     {
         this.currentVerticalSpeed = this.MovementSettings.JumpForce;
     }
-
+    public void DoubleJump()
+    {
+        this.currentVerticalSpeed = this.MovementSettings.DoublejumpForce;
+    }
     public void ToggleWalk()
     {
         this.IsWalking = !this.IsWalking;

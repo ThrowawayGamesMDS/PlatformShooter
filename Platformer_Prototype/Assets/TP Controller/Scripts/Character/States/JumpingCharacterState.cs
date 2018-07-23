@@ -13,6 +13,22 @@ public class JumpingCharacterState : CharacterStateBase
         if (character.IsGrounded)
         {
             this.ToState(character, CharacterStateBase.GROUNDED_STATE);
+            character.ExtraJump = character.maxJump;
         }
+        if (PlayerInput.GetJumpInput())
+        {
+            if (character.ExtraJump != 0)
+            {
+                character.ExtraJump--;
+                character.DoubleJump();
+                //this.ToState(character, CharacterStateBase.JUMPING_STATE);
+            }
+        }
+        //else if (character.ExtraJump != 0)
+        //{
+        //    character.ExtraJump--;
+        //    character.DoubleJump();
+        //    //this.ToState(character, CharacterStateBase.JUMPING_STATE);
+        //}
     }
 }

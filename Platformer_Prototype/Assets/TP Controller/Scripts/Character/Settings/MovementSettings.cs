@@ -23,7 +23,11 @@ public class MovementSettings
     [SerializeField]
     [Tooltip("Force impulse, [0, Infinity)")]
     private float jumpForce = 10f;
-    
+
+    [SerializeField]
+    [Tooltip("Force impulse, [0, Infinity)")]
+    private float doublejumpForce = 6f;
+
     public float Acceleration
     {
         get
@@ -81,6 +85,17 @@ public class MovementSettings
         set
         {
             this.jumpForce = value;
+        }
+    }
+    public float DoublejumpForce
+    {
+        get
+        {
+            return this.doublejumpForce;
+        }
+        set
+        {
+            this.doublejumpForce = value;
         }
     }
 }
