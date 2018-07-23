@@ -7,7 +7,7 @@ public class TurretAggro : MonoBehaviour
 
     public enum eAIMode { Idle, Alert, Aggro };
     public eAIMode myAIMode;
-    public GameObject playerObj;
+    public GameObject playerCentre;
     public float damping;
     public Transform endofturret;
     public float fireRate;
@@ -15,7 +15,7 @@ public class TurretAggro : MonoBehaviour
     private float turretCooldown;
     public AudioSource gunShotSound;
     public GameObject ball;
-
+    public GameObject playerObj;
     // Use this for initialization
     void Start()
     {
@@ -37,7 +37,7 @@ public class TurretAggro : MonoBehaviour
                 }
             case eAIMode.Aggro:
                 {
-                    Vector3 lookpos = playerObj.transform.position - transform.position;
+                    Vector3 lookpos = playerCentre.transform.position - transform.position;
                     //lookpos.y = 0;
                     Quaternion rotation = Quaternion.LookRotation(lookpos);
                     transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
@@ -45,7 +45,7 @@ public class TurretAggro : MonoBehaviour
                     if(Time.time > turretCooldown)
                     {
                         Vector3 rayOrigin = endofturret.position;
-                        Vector3 rayDirection = playerObj.transform.position - endofturret.position;
+                        Vector3 rayDirection = playerCentre.transform.position - endofturret.position;
                         RaycastHit hit;
                         if(Physics.Raycast(endofturret.position, rayDirection, out hit, 100))
                         {
@@ -60,6 +60,10 @@ public class TurretAggro : MonoBehaviour
                                     Debug.DrawRay(endofturret.position, rayDirection, Color.yellow);
                                     //Debug.Log(hit.transform.name);
                                     Instantiate(ball, hit.point, ball.transform.rotation);
+                                    if(hit.transform.tag == "Player")
+                                    {
+                                        hit.transform.SendMessage("PlayerShot", 20f);
+                                    }
                                 }
                                 else
                                 {
