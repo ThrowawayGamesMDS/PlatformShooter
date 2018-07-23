@@ -15,7 +15,6 @@ public class WeaponStats : MonoBehaviour
     public WeaponType m_eWeaponType;
     public float m_fWeaponEXP;
     public float m_fPower;
-    public int m_iMagCap;
     public string m_sWeaponType;
     public int m_iMagCount;
     public string m_sWeaponName;
@@ -23,9 +22,8 @@ public class WeaponStats : MonoBehaviour
 	void Start ()
     {
         m_fPower = m_fWeaponPower;
-        m_iMagCap = m_iMagazineCapacity;
         m_sWeaponType = DetermineType();
-        m_iMagCount = m_iMagCap;
+        m_iMagCount = m_iMagazineCapacity;
         //m_fWeaponEXP = 0.0f;
         //m_iWeaponLevel = 1;
     }
