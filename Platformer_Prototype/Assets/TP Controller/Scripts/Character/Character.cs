@@ -27,6 +27,8 @@ public class Character : MonoBehaviour
     private float targetHorizontalSpeed; // In meters/second
     private float currentHorizontalSpeed; // In meters/second
     private float currentVerticalSpeed; // In meters/second
+    public float mass = 3.0f;
+    public Vector3 impact = Vector3.forward;
     public int ExtraJump;
     public int maxJump;
    // public Transform savehome;
@@ -49,6 +51,8 @@ public class Character : MonoBehaviour
 
         this.UpdateHorizontalSpeed();
         this.ApplyMotion();
+        if (impact.magnitude > 0.2) controller.Move(impact * Time.deltaTime);
+        impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
     }
 
     #endregion Unity Methods
@@ -263,6 +267,15 @@ public class Character : MonoBehaviour
             return this.Velocity.y;
         }
     }
+
+
+    public void AddImpact(Vector3 dir)
+    {
+        dir.Normalize();
+        if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
+        impact += dir.normalized * 10 / mass;
+    }
+
 
     public void Jump()
     {

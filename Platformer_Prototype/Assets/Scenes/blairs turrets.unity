@@ -527,6 +527,27 @@ Prefab:
       propertyPath: playerCentre
       value: 
       objectReference: {fileID: 1441431935}
+    - target: {fileID: 4028208165763002, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028208165763002, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028208165763002, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431995248484702, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114891929280438678, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 199665412}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
   m_IsPrefabParent: 0
