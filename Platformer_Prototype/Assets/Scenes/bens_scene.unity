@@ -113,6 +113,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &105079116 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1431995248484702, guid: 7c1f3faa2591e5042b411078a53c35fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 693606731}
+--- !u!114 &105079118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 105079116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741783405ae31774e96869f07d6dd75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &693606731
 Prefab:
   m_ObjectHideFlags: 0
@@ -171,6 +187,16 @@ Prefab:
         type: 2}
       propertyPath: m_iMagazineCapacity
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114868987872838596, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: m_goShotHitOBJ
+      value: 
+      objectReference: {fileID: 1224317887970998, guid: 50ebd0b135deae846823ca9dded335f1,
+        type: 2}
+    - target: {fileID: 1488074398512890, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}

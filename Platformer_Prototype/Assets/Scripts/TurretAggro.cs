@@ -16,17 +16,14 @@ public class TurretAggro : MonoBehaviour
     public AudioSource gunShotSound;
     public GameObject ball;
     public GameObject playerObj;
+    public float f_TurretHealth;
     // Use this for initialization
     void Start()
     {
+        print(f_TurretHealth);
         myAIMode = eAIMode.Idle;
     }
 
-    void TurretFucked()
-    {
-        this.gameObject.SetActive(false);
-        print("This turret got HIT BRUH");
-    }
 
     // Update is called once per frame
     void Update()
@@ -60,16 +57,11 @@ public class TurretAggro : MonoBehaviour
                                 rayDirection.x += Random.Range(-turretAccuracy, turretAccuracy);
                                 rayDirection.z += Random.Range(-turretAccuracy, turretAccuracy);
                                 rayDirection.y += Random.Range(-turretAccuracy, turretAccuracy);
-
                                 if (Physics.Raycast(endofturret.position, rayDirection, out hit, 100))
                                 {
                                     Debug.DrawRay(endofturret.position, rayDirection, Color.yellow);
                                     //Debug.Log(hit.transform.name);
-                                    Instantiate(ball, hit.point, ball.transform.rotation);
-                                    if(hit.transform.tag == "Player")
-                                    {
-                                        hit.transform.SendMessage("PlayerShot", 20f);
-                                    }
+                                    CheckHit(hit, rayDirection);
                                 }
                                 else
                                 {
@@ -79,11 +71,13 @@ public class TurretAggro : MonoBehaviour
                                 turretCooldown = Time.time + fireRate;
                             }
                         }
-                        
                     }
                     break;
                 }
-
+        }
+        if(f_TurretHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -104,4 +98,23 @@ public class TurretAggro : MonoBehaviour
             Debug.Log(myAIMode);
         }
     }
+
+    void CheckHit(RaycastHit hit, Vector3 rayDirection)
+    {
+        GameObject pInstance = Instantiate(ball, hit.point, Quaternion.identity);
+        pInstance.transform.up = hit.normal;
+        if (hit.transform.tag == "Player")
+        {
+            hit.transform.SendMessage("PlayerShot", 20f);
+            hit.transform.SendMessage("AddImpact", rayDirection);
+        }
+    }
+
+    void TurretShot(float damage)
+    {
+        f_TurretHealth -= damage;
+        print(f_TurretHealth);
+    }
+
+
 }

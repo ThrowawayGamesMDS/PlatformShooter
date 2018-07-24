@@ -7,7 +7,13 @@ TagManager:
   - Fplatform
   - Mplatform
   - Splatform
+<<<<<<< HEAD
   - Lplatform
+=======
+  - Weapon
+  - Ground
+  - Turret
+>>>>>>> origin/master
   layers:
   - Default
   - TransparentFX

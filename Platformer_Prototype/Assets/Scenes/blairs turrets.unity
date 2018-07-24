@@ -113,6 +113,118 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &94030811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1349300499103938, guid: 7c1f3faa2591e5042b411078a53c35fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 94030816}
+  - component: {fileID: 94030815}
+  - component: {fileID: 94030814}
+  - component: {fileID: 94030813}
+  - component: {fileID: 94030812}
+  m_Layer: 8
+  m_Name: Weapon2 (1)
+  m_TagString: Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &94030812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114580627965504722, guid: 7c1f3faa2591e5042b411078a53c35fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94030811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa9306305bbfa9498818caecec2a5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fWeaponPower: 0
+  m_iMagazineCapacity: 5
+  m_iWeaponLevel: 0
+  m_eWeaponType: 0
+  m_fWeaponEXP: 0
+  m_fPower: 0
+  m_sWeaponType: 
+  m_iMagCount: 0
+  m_sWeaponName: Shonny
+--- !u!23 &94030813
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 23382127296154404, guid: 7c1f3faa2591e5042b411078a53c35fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94030811}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!135 &94030814
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 135898946888210584, guid: 7c1f3faa2591e5042b411078a53c35fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94030811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &94030815
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 33598888263547362, guid: 7c1f3faa2591e5042b411078a53c35fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94030811}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &94030816
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4142421926696732, guid: 7c1f3faa2591e5042b411078a53c35fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94030811}
+  m_LocalRotation: {x: -0, y: -0, z: 2.4207477e-21, w: 1}
+  m_LocalPosition: {x: 4.5714746, y: 1.97874, z: -18.005}
+  m_LocalScale: {x: 0.26468998, y: 0.28813, z: 0.4272}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &115577531 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4103570786163696, guid: 7c1f3faa2591e5042b411078a53c35fc,
@@ -163,7 +275,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1198722953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -492,7 +604,7 @@ Prefab:
         type: 2}
       propertyPath: ball
       value: 
-      objectReference: {fileID: 1738286174211894, guid: 647b33653a9af114fb0e3a9c51673f06,
+      objectReference: {fileID: 1224317887970998, guid: 50ebd0b135deae846823ca9dded335f1,
         type: 2}
     - target: {fileID: 4463206754257086, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -548,6 +660,51 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 199665412}
+    - target: {fileID: 114083464063421938, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: bulletPushForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501216608623856, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349300499103938, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914866495452866, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523821621752412, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813858741734002, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: f_TurretHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365153726232918, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488074398512890, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 114868987872838596, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: m_goShotHitOBJ
+      value: 
+      objectReference: {fileID: 1224317887970998, guid: 50ebd0b135deae846823ca9dded335f1,
+        type: 2}
+    - target: {fileID: 114550536539761074, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: m_sWeaponName
+      value: Pistol
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
   m_IsPrefabParent: 0
@@ -570,3 +727,14 @@ MonoBehaviour:
   f_playerRegen: 40
   f_MaxHealth: 200
   cg: {fileID: 1198722954}
+--- !u!114 &1775003543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1775003537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741783405ae31774e96869f07d6dd75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
