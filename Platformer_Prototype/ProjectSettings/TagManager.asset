@@ -7,13 +7,8 @@ TagManager:
   - Fplatform
   - Mplatform
   - Splatform
-<<<<<<< HEAD
   - Lplatform
-=======
-  - Weapon
-  - Ground
-  - Turret
->>>>>>> origin/master
+  - Death
   layers:
   - Default
   - TransparentFX
@@ -23,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 

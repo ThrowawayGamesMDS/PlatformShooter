@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
     public int ExtraJump;
     public int maxJump;
     public int bulletPushForce;
+    public bool partent = false;
     public Vector3 savehome;
     #region Unity Methods
 

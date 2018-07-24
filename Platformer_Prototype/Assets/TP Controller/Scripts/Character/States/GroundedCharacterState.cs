@@ -12,14 +12,14 @@ public class GroundedCharacterState : CharacterStateBase
 
         character.ApplyGravity(true); // Apply extra gravity
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            character.partent = false;
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            character.transform.parent = null;
-        }
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    character.partent = false;
+        //}
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    character.transform.parent = null;
+        //}
 
         if (PlayerInput.GetToggleWalkInput())
         {
@@ -88,6 +88,9 @@ public class GroundedCharacterState : CharacterStateBase
                     break;
                 case "Lplatform":
                     break;
+                //case "Death":
+                    //character.transform.position = character.savehome;
+                    //break;
                 default:
                     this.ToState(character, CharacterStateBase.IN_AIR_STATE);
                     break;

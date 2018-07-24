@@ -6,7 +6,7 @@ public class buttonCaller : MonoBehaviour {
     public GameObject[] place;
     public int GoTo = 0;
     public bool rush = false;
-    bool stopped = true;
+    public bool stopped = true;
     public int speed = 5;
     // Use this for initialization
     void Start () {
@@ -29,6 +29,11 @@ public class buttonCaller : MonoBehaviour {
             {
                 transform.position = Vector3.MoveTowards(transform.position, place[GoTo].transform.position, speed* 2 * Time.deltaTime);
 
+            }
+            if (Vector3.Distance(transform.position, place[GoTo].transform.position) <= 2)
+            {
+                stopped = false;
+                rush = false;
             }
         }
     }
