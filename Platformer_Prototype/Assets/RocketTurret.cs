@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretAggro : MonoBehaviour
-{
-
+public class RocketTurret : MonoBehaviour {
     public enum eAIMode { Idle, Alert, Aggro };
     public eAIMode myAIMode;
     public GameObject playerCentre;
@@ -65,6 +63,16 @@ public class TurretAggro : MonoBehaviour
                                     Debug.DrawRay(endofturret.position, rayDirection, Color.yellow);
                                     //Debug.Log(hit.transform.name);
                                     CheckHit(hit, rayDirection);
+
+                                    ////////////////////////////////////////////
+                                    //draw raycast if player is in view, instantiate rocket that travels in direction of rayDirection,
+                                    //when collides creates physics explosion force and makes raycast towards player with range of around 5
+                                    //if it hits then addimpact to player in direction of explosion ray and sendmessage-playershot with damage multiplied by 
+                                    //distance to explosion normalized
+                                    ///////////////////////////////////////////
+
+
+
                                 }
                                 else
                                 {
@@ -78,7 +86,7 @@ public class TurretAggro : MonoBehaviour
                     break;
                 }
         }
-        if(f_TurretHealth <= 0)
+        if (f_TurretHealth <= 0)
         {
             Destroy(gameObject);
         }
@@ -118,6 +126,5 @@ public class TurretAggro : MonoBehaviour
         f_TurretHealth -= damage;
         print(f_TurretHealth);
     }
-
 
 }
