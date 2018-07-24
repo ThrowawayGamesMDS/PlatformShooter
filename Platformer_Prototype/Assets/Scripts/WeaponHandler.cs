@@ -7,6 +7,7 @@ public class WeaponHandler : MonoBehaviour
     public static int m_iCurrentWeapon;
     private int m_iPlayerHeldShoot;
     public GameObject[] m_goWeapons;
+    public GameObject m_goShotHitOBJ;
     public static GameObject m_gActiveWeapon;
     // Use this for initialization
     void Start()
@@ -44,7 +45,12 @@ public class WeaponHandler : MonoBehaviour
     {
         if (_h.transform.name == "Turret")
         {
-            _h.transform.SendMessage("TurretFucked");
+            
+        }
+        else if (_h.transform.tag == "Ground")
+        {
+            GameObject pInstance = Instantiate(m_goShotHitOBJ, _h.point, Quaternion.identity);
+            pInstance.transform.up = _h.normal;
         }
     }
 
@@ -57,6 +63,7 @@ public class WeaponHandler : MonoBehaviour
         Vector3 randomShotCunt;
        // var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        Vector3 last_direction = new Vector3(0,0);
       
         
         switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName)
@@ -74,12 +81,34 @@ public class WeaponHandler : MonoBehaviour
             case "Shonny":
                 for (int i = 0; i < 9; i++) // random shotgun pellet variance
                 {
+                    bool shot = false;
                     randomShotCunt = ray.direction;
+                    while (!shot)
+                    {
+                        if (randomShotCunt != last_direction || randomShotCunt != ray.direction)
+                        {
+                            Debug.DrawRay(ray.origin, randomShotCunt * 1000, new Color(1f, 0.922f, 0.016f, 1f));
+                            print("[" + i + "] Random Range: " + randomShotCunt);
+                            last_direction = randomShotCunt;
+                            if (Physics.Raycast(ray.origin, randomShotCunt * 1000, out hit, 250.0f))
+                            {
+                                print(hit.transform.name);
+                                CheckHit(hit);
+                            }
+                            shot = true;
+                        }
+                        else
+                        {
+                            randomShotCunt.x *= Random.Range(0.0f, 0.1f);
+                            print("[" + i + "] Random Range: " + randomShotCunt);
+                        }
+                    }
                     print("Firing shot: " + m_iPlayerHeldShoot);
-                    randomShotCunt.x = Random.Range(0.0f, 0.05f);
-                    randomShotCunt.y = Random.Range(0.0f, 0.05f);
-                    randomShotCunt.z = 0.0f;
-                    Debug.DrawRay(ray.origin, (randomShotCunt) * 10000, new Color(1f, 0.922f, 0.016f, 1f));
+                    //randomShotCunt.x = Random.Range(0.0f, 0.05f);
+                    //randomShotCunt.y = Random.Range((Screen.width / 4 * 2), (Screen.width / 4 * 3));
+
+                   // randomShotCunt.z = Random.Range((Screen`.width / 4 * 2), (Screen.width / 4 * 3));
+                    Debug.DrawRay(ray.origin, randomShotCunt * 10000, new Color(1f, 0.922f, 0.016f, 1f));
                 }
                 break;
             case "Bazzy":
@@ -87,9 +116,9 @@ public class WeaponHandler : MonoBehaviour
                 {
                     randomShotCunt = ray.direction;
                     print("Firing shot: " + m_iPlayerHeldShoot);
-                    randomShotCunt.x = Random.Range(0.1f, 0.5f);
-                    randomShotCunt.y = Random.Range(0.1f, 0.5f);
-                    randomShotCunt.z = 0.0f;
+                  //  randomShotCunt.x = Random.Range(0.1f, 0.5f);
+               //     randomShotCunt.y = Random.Range(0.1f, 0.5f);
+                   // randomShotCunt.z = 0.0f;
                     Debug.DrawRay(ray.origin, (randomShotCunt * -1) * 10000, new Color(1f, 0.922f, 0.016f, 1f));
                 }
                 break;

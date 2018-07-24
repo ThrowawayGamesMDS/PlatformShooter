@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
     public int ExtraJump;
     public int maxJump;
     public int bulletPushForce;
-   // public Transform savehome;
+    public Vector3 savehome;
     #region Unity Methods
 
     protected virtual void Awake()

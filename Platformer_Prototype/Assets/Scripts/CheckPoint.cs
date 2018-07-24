@@ -31,7 +31,10 @@ public class CheckPoint : MonoBehaviour {
                 {
                 if (hit.distance <= 10.0f)
                 {
-                    hit.transform.GetComponent<Character>().savepoint = new Vector3(transform.position.x, transform.position.y+1.06f, transform.position.z);
+                    if (hit.transform.tag == "Player")
+                    {
+                        hit.transform.GetComponent<Character>().savehome = new Vector3(transform.position.x, transform.position.y + 1.06f, transform.position.z);
+                    }
                     print("check point");
                 }
 
