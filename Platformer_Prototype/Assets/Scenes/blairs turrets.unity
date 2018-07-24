@@ -275,7 +275,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1198722953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -680,6 +680,30 @@ Prefab:
     - target: {fileID: 1523821621752412, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
       propertyPath: m_TagString
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813858741734002, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: f_TurretHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365153726232918, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488074398512890, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 114868987872838596, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: m_goShotHitOBJ
+      value: 
+      objectReference: {fileID: 1224317887970998, guid: 50ebd0b135deae846823ca9dded335f1,
+        type: 2}
+    - target: {fileID: 114550536539761074, guid: 7c1f3faa2591e5042b411078a53c35fc,
+        type: 2}
+      propertyPath: m_sWeaponName
+      value: Pistol
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1f3faa2591e5042b411078a53c35fc, type: 2}

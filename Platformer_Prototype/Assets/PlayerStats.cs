@@ -43,10 +43,21 @@ public class PlayerStats : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 5))
             {
                 Transform objectHit = hit.transform;
-                if(objectHit.tag == "Weapon")
+                switch (objectHit.tag)
                 {
-                    print("pickup weapon");
-                    Destroy(objectHit.gameObject);
+                    case "Weapon":
+                        {
+                            print("pickup weapon");
+                            Destroy(objectHit.gameObject);
+                            break;
+                        }
+                    /*case "Turret":
+                        {
+                            print("turret shot");
+                            hit.transform.SendMessage("TurretShot", 20);
+                            break;
+                        }*/
+
                 }
             }
         }

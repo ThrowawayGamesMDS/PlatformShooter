@@ -43,11 +43,16 @@ public class WeaponHandler : MonoBehaviour
 
     private void CheckHit(RaycastHit _h)
     {
-        if (_h.transform.name == "Turret")
+        if (_h.transform.tag == "Turret")
         {
-            
+            _h.transform.SendMessage("TurretShot", 10);
         }
         else if (_h.transform.tag == "Ground")
+        {
+            GameObject pInstance = Instantiate(m_goShotHitOBJ, _h.point, Quaternion.identity);
+            pInstance.transform.up = _h.normal;
+        }
+        else
         {
             GameObject pInstance = Instantiate(m_goShotHitOBJ, _h.point, Quaternion.identity);
             pInstance.transform.up = _h.normal;

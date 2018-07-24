@@ -20,6 +20,7 @@ public class TurretAggro : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        print(f_TurretHealth);
         myAIMode = eAIMode.Idle;
     }
 
@@ -60,13 +61,7 @@ public class TurretAggro : MonoBehaviour
                                 {
                                     Debug.DrawRay(endofturret.position, rayDirection, Color.yellow);
                                     //Debug.Log(hit.transform.name);
-                                    GameObject pInstance = Instantiate(ball, hit.point, Quaternion.identity);
-                                    pInstance.transform.up = hit.normal;
-                                    if(hit.transform.tag == "Player")
-                                    {
-                                        hit.transform.SendMessage("PlayerShot", 20f);
-                                        hit.transform.SendMessage("AddImpact", -hit.normal);
-                                    }
+                                    CheckHit(hit, rayDirection);
                                 }
                                 else
                                 {
@@ -104,10 +99,21 @@ public class TurretAggro : MonoBehaviour
         }
     }
 
+    void CheckHit(RaycastHit hit, Vector3 rayDirection)
+    {
+        GameObject pInstance = Instantiate(ball, hit.point, Quaternion.identity);
+        pInstance.transform.up = hit.normal;
+        if (hit.transform.tag == "Player")
+        {
+            hit.transform.SendMessage("PlayerShot", 20f);
+            hit.transform.SendMessage("AddImpact", rayDirection);
+        }
+    }
 
     void TurretShot(float damage)
     {
         f_TurretHealth -= damage;
+        print(f_TurretHealth);
     }
 
 
