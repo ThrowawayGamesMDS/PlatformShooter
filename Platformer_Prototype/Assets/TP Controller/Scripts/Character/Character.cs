@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     public Vector3 impact = Vector3.forward;
     public int ExtraJump;
     public int maxJump;
+    public Vector3 savepoint;
    // public Transform savehome;
     #region Unity Methods
 
