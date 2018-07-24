@@ -267,8 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a70021b378230646b75b69f9e8fee1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2027126312}
-  dis: 4
 --- !u!65 &118639493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3312,9 +3310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74009cad988ecf41a1270d044747f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPImage: {fileID: 1912153569}
-  MaxHP: 150
-  tempHP: 100
 --- !u!114 &1912153569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3458,6 +3453,7 @@ MonoBehaviour:
     jogSpeed: 8
     sprintSpeed: 12
     jumpForce: 15
+    doublejumpForce: 8
   gravitySettings:
     gravityStrength: 27
     maxFallSpeed: 38
@@ -3466,6 +3462,11 @@ MonoBehaviour:
     rotationSmoothing: 15
     orientRotationToMovement: 1
     useControlRotation: 0
+  mass: 3
+  impact: {x: 0, y: 0, z: 1}
+  ExtraJump: 0
+  maxJump: 3
+  savepoint: {x: 0, y: 0, z: 0}
 --- !u!143 &2027126315
 CharacterController:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class CheckPoint : MonoBehaviour {
     public GameObject player;
     public float dis;
     bool lastOne = false;
+   
 	// Use this for initialization
 	void Start () {
 		
@@ -15,24 +16,30 @@ public class CheckPoint : MonoBehaviour {
 	void Update () {
         Vector3 raycastDir = player.transform.position - transform.position;
         raycastDir.y = raycastDir.y + 1.05f;
-        raycastDir= raycastDir.normalized;
-        RaycastHit hit;
         
-        Debug.DrawRay(transform.position, raycastDir*dis, Color.blue);
+        RaycastHit hit;
+        Ray workingray = new Ray(transform.position, raycastDir);
 
+        
 
         if (lastOne == true)
         {
 
-            if (Physics.Raycast(transform.position, raycastDir, out hit))
-            {
+            //if (Physics.Raycast(transform.position, raycastDir,dis)) 
+                 //if (Physics.Raycast(transform.position, raycastDir * dis, out hit))
+                if (Physics.Raycast(workingray, out hit))
+                {
                 if (hit.distance <= 10.0f)
                 {
+                    hit.transform.GetComponent<Character>().savepoint = new Vector3(transform.position.x, transform.position.y+1.06f, transform.position.z);
                     print("check point");
                 }
 
             }
         }
+        raycastDir = raycastDir.normalized;
+        Debug.DrawRay(transform.position, raycastDir * dis, Color.blue);
+
     }
 }
 
