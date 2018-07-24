@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class buttonCaller : MonoBehaviour {
     public GameObject[] place;
+    public int GoTo = 0;
+    public bool rush = false;
     bool stopped = true;
     public int speed = 5;
     // Use this for initialization
@@ -18,8 +20,27 @@ public class buttonCaller : MonoBehaviour {
         }
         if (stopped == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, place[0].transform.position, speed * Time.deltaTime);
+            if (rush == false)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, place[GoTo].transform.position, speed * Time.deltaTime);
 
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, place[GoTo].transform.position, speed* 2 * Time.deltaTime);
+
+            }
         }
+    }
+    public void move() {
+        stopped = false;
+    }
+    public void top()
+    {
+
+    }
+    public void bottom()
+    {
+
     }
 }

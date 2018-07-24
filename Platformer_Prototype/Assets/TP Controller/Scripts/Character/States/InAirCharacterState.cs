@@ -8,8 +8,8 @@ public class InAirCharacterState : CharacterStateBase
 {
     public override void OnEnter(Character character)
     {
+        character.transform.parent = null;
         base.OnEnter(character);
-
         character.ResetVerticalSpeed();
     }
 

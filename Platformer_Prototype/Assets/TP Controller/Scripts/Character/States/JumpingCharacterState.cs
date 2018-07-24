@@ -6,10 +6,17 @@ using System.Collections;
 /// </summary>
 public class JumpingCharacterState : CharacterStateBase
 {
+    public override void OnEnter(Character character)
+    {
+        character.transform.parent = null;
+       
+
+    }
     public override void Update(Character character)
     {
+     
         base.Update(character);
-
+        character.partent = false;
         if (character.IsGrounded)
         {
             this.ToState(character, CharacterStateBase.GROUNDED_STATE);
@@ -21,14 +28,8 @@ public class JumpingCharacterState : CharacterStateBase
             {
                 character.ExtraJump--;
                 character.DoubleJump();
-                //this.ToState(character, CharacterStateBase.JUMPING_STATE);
+                
             }
         }
-        //else if (character.ExtraJump != 0)
-        //{
-        //    character.ExtraJump--;
-        //    character.DoubleJump();
-        //    //this.ToState(character, CharacterStateBase.JUMPING_STATE);
-        //}
     }
 }

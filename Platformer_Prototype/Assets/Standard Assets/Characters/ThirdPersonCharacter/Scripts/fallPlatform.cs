@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 {
     public class fallPlatform : MonoBehaviour
     {
-        bool Falling = false;
+        public bool Falling = false;
         public float time = 60;
         // Use this for initialization
         void Start()
@@ -37,7 +37,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public void playerON()
         {
             print("falling");
-        Falling = true;
+            Falling = true;
          
         }
     }

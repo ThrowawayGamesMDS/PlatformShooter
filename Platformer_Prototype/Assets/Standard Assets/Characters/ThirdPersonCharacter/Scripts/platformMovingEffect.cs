@@ -11,12 +11,13 @@ public class platformMovingEffect : MonoBehaviour {
 
    
 	// Update is called once per frame
-	void FixedUpdate() {
+	void LateUpdate() {
         lastPlace = transform.position;
 
     }
     public Vector3 Action()
     {
+        print("goog");
         return lastPlace - transform.position;
     }
 }
