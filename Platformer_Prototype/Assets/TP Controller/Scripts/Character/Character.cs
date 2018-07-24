@@ -3,14 +3,11 @@
 public class Character : MonoBehaviour
 {
     // Serialized fields
-    [SerializeField]
-    private new Camera camera = null;
+    [SerializeField] private new Camera camera = null;
 
-    [SerializeField]
-    private MovementSettings movementSettings = null;
+    [SerializeField] private MovementSettings movementSettings = null;
 
-    [SerializeField]
-    private GravitySettings gravitySettings = null;
+    [SerializeField] private GravitySettings gravitySettings = null;
 
     [SerializeField]
     [HideInInspector]
@@ -31,6 +28,7 @@ public class Character : MonoBehaviour
     public Vector3 impact = Vector3.forward;
     public int ExtraJump;
     public int maxJump;
+    public int bulletPushForce;
    // public Transform savehome;
     #region Unity Methods
 
@@ -41,6 +39,7 @@ public class Character : MonoBehaviour
         this.CurrentState = CharacterStateBase.GROUNDED_STATE;
        
         this.IsJogging = true;
+        
 
         maxJump = ExtraJump;
     }
@@ -272,8 +271,8 @@ public class Character : MonoBehaviour
     public void AddImpact(Vector3 dir)
     {
         dir.Normalize();
-        if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
-        impact += dir.normalized * 10 / mass;
+        if (dir.y < 0) dir.y = -dir.y; 
+        impact += dir.normalized * bulletPushForce / mass;
     }
 
 

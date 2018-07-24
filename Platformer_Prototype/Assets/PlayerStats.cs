@@ -19,16 +19,12 @@ public class PlayerStats : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        print(f_regenTimer);
-        Debug.Log(f_playerHealth);
         f_regenTimer += 1 * Time.deltaTime;
         cg.alpha = 1 - f_playerHealth / f_MaxHealth;
         if (f_playerHealth < 0)
         {
             f_playerHealth = 0;
         }
-
-        
         if (f_playerHealth < f_MaxHealth)
         {
             if (f_regenTimer > 3)
@@ -36,7 +32,25 @@ public class PlayerStats : MonoBehaviour {
                 f_playerHealth += (f_playerRegen * Time.deltaTime);
             }
         }
-    }
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 5))
+            {
+                Transform objectHit = hit.transform;
+                if(objectHit.tag == "Weapon")
+                {
+                    print("pickup weapon");
+                    Destroy(objectHit.gameObject);
+                }
+            }
+        }
+     }
 
 
 

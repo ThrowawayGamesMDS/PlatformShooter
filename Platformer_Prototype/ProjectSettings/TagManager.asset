@@ -7,6 +7,7 @@ TagManager:
   - Fplatform
   - Mplatform
   - Splatform
+  - Weapon
   layers:
   - Default
   - TransparentFX
