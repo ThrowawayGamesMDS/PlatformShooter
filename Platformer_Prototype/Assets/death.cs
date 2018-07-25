@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class death : Character {
+public class death : MonoBehaviour
+{
     //Character character;
     public int deathDrop;
 	// Use this for initialization

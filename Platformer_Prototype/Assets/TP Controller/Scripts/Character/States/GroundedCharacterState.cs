@@ -69,7 +69,7 @@ public class GroundedCharacterState : CharacterStateBase
                     }
                     break;
                 case "Mplatform":
-                    Debug.Log("hope");
+                    
                     
 
                     if (character.IsGrounded == true)
@@ -87,10 +87,32 @@ public class GroundedCharacterState : CharacterStateBase
                 
                     break;
                 case "Lplatform":
+                    if (hitchecker.transform.GetComponent<buttonCaller>().stopped == true)
+                    {
+
+                        if (hitchecker.transform.GetComponent<buttonCaller>().GoTo == 0)
+                        {
+                            hitchecker.transform.GetComponent<buttonCaller>().GoTo = 1;
+                        }
+                        else
+                        {
+                            hitchecker.transform.GetComponent<buttonCaller>().GoTo = 0;
+                        }
+
+                        hitchecker.transform.GetComponent<buttonCaller>().stopped = false;
+                        if (character.IsGrounded == true)
+                        {
+                            if (character.partent == false)
+                            {
+                                character.partent = true;
+
+                                character.transform.parent = hitchecker.transform;
+                            }
+                        }
+                    }
+                    
                     break;
-                //case "Death":
-                    //character.transform.position = character.savehome;
-                    //break;
+                
                 default:
                     this.ToState(character, CharacterStateBase.IN_AIR_STATE);
                     break;
