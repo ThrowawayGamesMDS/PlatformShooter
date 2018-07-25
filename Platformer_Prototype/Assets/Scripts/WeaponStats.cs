@@ -15,6 +15,7 @@ public class WeaponStats : MonoBehaviour
     public WeaponType m_eWeaponType;
     public float m_fWeaponEXP;
     public float m_fPower;
+    public float m_fFireRate;
     public string m_sWeaponType;
     public int m_iMagCount;
     public string m_sWeaponName;

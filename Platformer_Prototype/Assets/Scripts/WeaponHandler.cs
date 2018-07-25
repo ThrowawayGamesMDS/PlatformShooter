@@ -8,12 +8,14 @@ public class WeaponHandler : MonoBehaviour
     public int m_iRifleBulletDispersionRange;
     public static int m_iCurrentWeapon;
     private int m_iPlayerHeldShoot;
+    public bool m_bPlayerCanShoot;
     public GameObject[] m_goWeapons;
     public GameObject m_goShotHitOBJ;
     public static GameObject m_gActiveWeapon;
     // Use this for initialization
     void Start()
     {
+        m_bPlayerCanShoot = true;
         m_iPlayerHeldShoot = 0;
         m_iCurrentWeapon = 0;
         m_iShotgunPelletDispersionRange = 35;
@@ -61,6 +63,11 @@ public class WeaponHandler : MonoBehaviour
             GameObject pInstance = Instantiate(m_goShotHitOBJ, _h.point, Quaternion.identity);
             pInstance.transform.up = _h.normal;
         }
+    }
+
+    private void FireRateRefresh()
+    {
+        m_bPlayerCanShoot = true;
     }
 
     private void GenerateGunShot()
@@ -113,8 +120,10 @@ public class WeaponHandler : MonoBehaviour
                     }
                     break;
             }
+        Invoke("FireRateRefresh", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fFireRate);
+        m_bPlayerCanShoot = false;
            // WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount--;
-       // }
+           // }
     }
 
     // Update is called once per frame
@@ -146,7 +155,7 @@ public class WeaponHandler : MonoBehaviour
             HandleWeaponSwitch();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)) // player shooting
+        if (Input.GetKeyDown(KeyCode.Mouse0) && m_bPlayerCanShoot) // player shooting
         {
             if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName != "Rifle")
             {
@@ -154,7 +163,7 @@ public class WeaponHandler : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && m_bPlayerCanShoot)
         {
            if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName == "Rifle")
             {
