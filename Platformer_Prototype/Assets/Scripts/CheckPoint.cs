@@ -6,7 +6,7 @@ public class CheckPoint : MonoBehaviour {
     public GameObject player;
     public float dis;
     bool lastOne = false;
-   
+   public Vector3 savepoint;
 	// Use this for initialization
 	void Start () {
 		
@@ -22,18 +22,18 @@ public class CheckPoint : MonoBehaviour {
 
         
 
-        if (lastOne == true)
+        if (lastOne == false)
         {
 
             //if (Physics.Raycast(transform.position, raycastDir,dis)) 
                  //if (Physics.Raycast(transform.position, raycastDir * dis, out hit))
                 if (Physics.Raycast(workingray, out hit))
                 {
-                if (hit.distance <= 10.0f)
+                if (hit.distance <= dis)
                 {
                     if (hit.transform.tag == "Player")
                     {
-                        hit.transform.GetComponent<Character>().savehome = new Vector3(transform.position.x, transform.position.y + 1.06f, transform.position.z);
+                        hit.transform.GetComponent<Character>().savehome = savepoint;
                     }
                     print("check point");
                 }
