@@ -109,7 +109,10 @@ public class TurretAggro : MonoBehaviour
         if (hit.transform.tag == "Player")
         {
             hit.transform.SendMessage("PlayerShot", 20f);
-            hit.transform.SendMessage("AddImpact", rayDirection);
+            if (hit.transform.gameObject.GetComponent<Character>() != null)
+            {
+                hit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, 10);
+            }
         }
     }
 

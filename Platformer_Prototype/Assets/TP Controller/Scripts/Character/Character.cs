@@ -28,7 +28,6 @@ public class Character : MonoBehaviour
     public Vector3 impact = Vector3.forward;
     public int ExtraJump;
     public int maxJump;
-    public int bulletPushForce;
     public bool partent = false;
     public Vector3 savehome;
     #region Unity Methods
@@ -269,11 +268,11 @@ public class Character : MonoBehaviour
     }
 
 
-    public void AddImpact(Vector3 dir)
+    public void AddImpact(Vector3 dir, float pushForce)
     {
         dir.Normalize();
         if (dir.y < 0) dir.y = -dir.y; 
-        impact += dir.normalized * bulletPushForce / mass;
+        impact += dir.normalized * pushForce / mass;
     }
 
 
