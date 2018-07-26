@@ -77,6 +77,7 @@ public class RocketTurret : MonoBehaviour {
                                 else
                                 {
                                     Debug.DrawRay(endofturret.position, rayDirection, Color.white);
+                                    CheckHit(hit, rayDirection);
                                 }
                                 gunShotSound.Play();
                                 turretCooldown = Time.time + fireRate;
@@ -112,13 +113,7 @@ public class RocketTurret : MonoBehaviour {
 
     void CheckHit(RaycastHit hit, Vector3 rayDirection)
     {
-        GameObject pInstance = Instantiate(ball, hit.point, Quaternion.identity);
-        pInstance.transform.up = hit.normal;
-        if (hit.transform.tag == "Player")
-        {
-            hit.transform.SendMessage("PlayerShot", 20f);
-            hit.transform.SendMessage("AddImpact", rayDirection);
-        }
+        
     }
 
     void TurretShot(float damage)

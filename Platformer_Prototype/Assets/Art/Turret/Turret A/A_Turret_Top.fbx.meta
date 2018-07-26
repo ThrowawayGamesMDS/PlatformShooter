@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 318a13278b55c004889c8633bdd62dd9
+guid: eab71f4a15ae3dd4c8b026633e2e49e3
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert1
-    2100002: lambert2
+    2100000: lambert2
+    2100002: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Turret1
+    4300000: A_MiniTurret_Top
   externalObjects: {}
   materials:
     importMaterials: 1
