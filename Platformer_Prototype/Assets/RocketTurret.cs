@@ -12,9 +12,10 @@ public class RocketTurret : MonoBehaviour {
     public float turretAccuracy;
     private float turretCooldown;
     public AudioSource gunShotSound;
-    public GameObject ball;
+    public GameObject missile;
     public GameObject playerObj;
     public float f_TurretHealth;
+
     // Use this for initialization
     void Start()
     {
@@ -113,7 +114,8 @@ public class RocketTurret : MonoBehaviour {
 
     void CheckHit(RaycastHit hit, Vector3 rayDirection)
     {
-        
+        GameObject MissileObj = Instantiate(missile, endofturret.position, Quaternion.Euler(new Vector3(rayDirection.x, rayDirection.y, rayDirection.z)));
+        MissileObj.transform.forward = rayDirection;
     }
 
     void TurretShot(float damage)

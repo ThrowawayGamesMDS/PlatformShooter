@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - AMMO_BOX
   - WEAPON_HANDLER
+  - PlayerCentre
   layers:
   - Default
   - TransparentFX
