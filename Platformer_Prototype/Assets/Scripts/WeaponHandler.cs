@@ -83,23 +83,15 @@ public class WeaponHandler : MonoBehaviour
 
     private void GenerateGunShot()
     {
-        /*int layerMask = 1 << 8;
-
-        layerMask = ~layerMask;*/
         RaycastHit hit;
-        Vector3 randomShotCunt;
-       // var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         Vector3 last_direction = new Vector3(0,0);
         int _iWidth = Screen.width / 2;
         int _iHeight = Screen.height / 2;
 
-       // if(WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount > 0)
-       // {
-            switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName)
+            switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType)
             {
-                case "Pistol":
-                    ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+                case WeaponStats.WeaponType.PISTOL:
                     Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
                     if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
                     {
@@ -107,11 +99,11 @@ public class WeaponHandler : MonoBehaviour
                         CheckHit(hit);
                     }
                     break;
-                case "Shonny":
-                    for (int i = 0; i < 9; i++) // random shotgun pellet variance
+            case WeaponStats.WeaponType.SHOTGUN:
+                for (int i = 0; i < 9; i++) // random shotgun pellet variance
                     {
                         ray = Camera.main.ScreenPointToRay(new Vector3(Random.Range(_iWidth - m_iShotgunPelletDispersionRange, _iWidth + m_iShotgunPelletDispersionRange),
-                            Random.Range(_iHeight - m_iShotgunPelletDispersionRange, _iHeight + m_iShotgunPelletDispersionRange)));
+                            Random.Range(_iHeight - m_iShotgunPelletDispersionRange, _iHeight + m_iShotgunPelletDispersionRange/2)));
                         Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
                         if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
                         {
@@ -120,8 +112,8 @@ public class WeaponHandler : MonoBehaviour
                         }
                     }
                     break;
-                case "Rifle":
-                    ray = Camera.main.ScreenPointToRay(new Vector3(Random.Range(_iWidth - m_iRifleBulletDispersionRange, _iWidth + m_iRifleBulletDispersionRange),
+            case WeaponStats.WeaponType.RIFLE:
+                ray = Camera.main.ScreenPointToRay(new Vector3(Random.Range(_iWidth - m_iRifleBulletDispersionRange, _iWidth + m_iRifleBulletDispersionRange),
                            Random.Range(_iHeight - m_iRifleBulletDispersionRange, _iHeight + m_iRifleBulletDispersionRange)));
                     Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
                     if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
@@ -133,8 +125,6 @@ public class WeaponHandler : MonoBehaviour
             }
         Invoke("FireRateRefresh", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fFireRate);
         m_bPlayerCanShoot = false;
-           // WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount--;
-           // }
     }
 
     // Update is called once per frame

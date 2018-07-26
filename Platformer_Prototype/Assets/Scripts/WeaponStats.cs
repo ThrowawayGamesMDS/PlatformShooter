@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class WeaponStats : MonoBehaviour
 {
-    public enum WeaponType
+    public  enum WeaponType
     {
-        SINGLE, BURST, AUTO
+        PISTOL = 0, SHOTGUN = 1, RIFLE = 2
     }
 
     public float m_fWeaponPower;
@@ -23,15 +23,15 @@ public class WeaponStats : MonoBehaviour
 	void Start ()
     {
         m_fPower = m_fWeaponPower;
-        m_sWeaponType = DetermineType();
+       // m_sWeaponType = DetermineType();
         m_iMagCount = m_iMagazineCapacity;
         //m_fWeaponEXP = 0.0f;
         //m_iWeaponLevel = 1;
     }
 	
-    private string DetermineType()
+    /*private string DetermineType()
     {
-        var _s = "";
+        /*var _s = "";
         switch(m_eWeaponType)
         {
             case WeaponType.SINGLE:
@@ -51,7 +51,7 @@ public class WeaponStats : MonoBehaviour
                 }
         }
         return _s;
-    }
+    }*/
 
 	// Update is called once per frame
 	void Update ()
