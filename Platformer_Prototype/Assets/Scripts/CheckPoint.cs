@@ -35,7 +35,7 @@ public class CheckPoint : MonoBehaviour {
                     {
                         hit.transform.GetComponent<Character>().savehome = savepoint;
                     }
-                    print("check point");
+                    //print("check point");
                 }
 
             }

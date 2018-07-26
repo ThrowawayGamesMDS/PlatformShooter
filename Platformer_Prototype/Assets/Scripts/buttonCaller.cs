@@ -9,36 +9,34 @@ public class buttonCaller : MonoBehaviour {
     public bool rush = false;
     public bool stopped = true;
     public int speed = 5;
+    
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.X)){
-            stopped = false;
-        }
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+
         if (stopped == false)
         {
             if (rush == true)
             {
-                transform.position = Vector3.MoveTowards(transform.position, place[GoTo].transform.position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, place[GoTo].transform.position, speed * 2 * Time.deltaTime);
 
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, place[GoTo].transform.position, speed* 2 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, place[GoTo].transform.position, speed  * Time.deltaTime);
 
             }
             if (Vector3.Distance(transform.position, place[GoTo].transform.position) <= 0)
             {
+               
                 stopped = true;
                 rush = false;
+                //print("hit");
             }
         }
-    }
-    public void move() {
-        stopped = false;
     }
 }

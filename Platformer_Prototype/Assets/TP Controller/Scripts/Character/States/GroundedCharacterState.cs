@@ -6,8 +6,21 @@ using System.Collections;
 /// </summary>
 public class GroundedCharacterState : CharacterStateBase
 {
+    int delay=0;
     public override void Update(Character character)
     {
+
+        if (delay <= 0)
+        {
+            delay = 0;
+        }
+        else
+        {
+            delay--;
+        }
+        //Debug.Log(delay);
+
+
         base.Update(character);
 
         character.ApplyGravity(true); // Apply extra gravity
@@ -46,6 +59,7 @@ public class GroundedCharacterState : CharacterStateBase
           
 
         }
+        
         //another gound check
         RaycastHit hitchecker;
         if (Physics.Raycast(character.transform.position + (Vector3.up * 0.15f), Vector3.down, out hitchecker))
@@ -87,30 +101,37 @@ public class GroundedCharacterState : CharacterStateBase
                 
                     break;
                 case "Lplatform":
-                    if (hitchecker.transform.GetComponent<buttonCaller>().stopped == true)
+                    if (delay <= 0)
                     {
+                        
 
-                        if (hitchecker.transform.GetComponent<buttonCaller>().GoTo == 0)
+                        if (hitchecker.transform.GetComponent<buttonCaller>().stopped == true)
                         {
-                            hitchecker.transform.GetComponent<buttonCaller>().GoTo = 1;
-                        }
-                        else
-                        {
-                            hitchecker.transform.GetComponent<buttonCaller>().GoTo = 0;
-                        }
 
-                        hitchecker.transform.GetComponent<buttonCaller>().stopped = false;
-                        if (character.IsGrounded == true)
-                        {
-                            if (character.partent == false)
+                            if (hitchecker.transform.GetComponent<buttonCaller>().GoTo == 0)
                             {
-                                character.partent = true;
-
-                                character.transform.parent = hitchecker.transform;
+                                hitchecker.transform.GetComponent<buttonCaller>().GoTo = 1;
                             }
+                            else
+                            {
+                                hitchecker.transform.GetComponent<buttonCaller>().GoTo = 0;
+                            }
+                            Debug.Log("ho");
+                            //hitchecker.transform.GetComponent<buttonCaller>().wait();
+                            hitchecker.transform.GetComponent<buttonCaller>().stopped = false;
+                            if (character.IsGrounded == true)
+                            {
+                                if (character.partent == false)
+                                {
+                                    character.partent = true;
+
+                                    character.transform.parent = hitchecker.transform;
+                                }
+                            }
+                            delay = 300;
                         }
+                        Debug.Log(delay);
                     }
-                    
                     break;
                 
                 default:
