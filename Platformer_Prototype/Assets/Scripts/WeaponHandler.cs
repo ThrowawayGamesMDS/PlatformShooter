@@ -9,6 +9,9 @@ public class WeaponHandler : MonoBehaviour
     public static int m_iCurrentWeapon;
     private int m_iPlayerHeldShoot;
     public bool m_bPlayerCanShoot;
+    public int m_iShotgunAmmoCount;
+    public int m_iPistolAmmoCount;
+    public int m_iRifleAmmoCount;
     public GameObject[] m_goWeapons;
     public GameObject m_goShotHitOBJ;
     public static GameObject m_gActiveWeapon;
@@ -20,6 +23,9 @@ public class WeaponHandler : MonoBehaviour
         m_iCurrentWeapon = 0;
         m_iShotgunPelletDispersionRange = 35;
         m_iRifleBulletDispersionRange = 10;
+        m_iShotgunAmmoCount = 10;
+        m_iPistolAmmoCount = 10;
+        m_iRifleAmmoCount = 10;
         for (int i = 0; i < 3; i++)
         {
             if (i != m_iCurrentWeapon)
@@ -51,12 +57,17 @@ public class WeaponHandler : MonoBehaviour
     {
         if (_h.transform.tag == "Turret")
         {
-            _h.transform.SendMessage("TurretShot", 10);
+            _h.transform.SendMessage("TurretShot", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower);
         }
         else if (_h.transform.tag == "Ground")
         {
             GameObject pInstance = Instantiate(m_goShotHitOBJ, _h.point, Quaternion.identity);
             pInstance.transform.up = _h.normal;
+        }
+        else if (_h.transform.tag == "AMMO_BOX")
+        {
+            _h.transform.SendMessage("SpawnTheLoot");
+            print("Spawn AMMO!");
         }
         else
         {
