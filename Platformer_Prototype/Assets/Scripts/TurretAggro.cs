@@ -78,9 +78,9 @@ public class TurretAggro : MonoBehaviour
                     break;
                 }
         }
-        if(f_TurretHealth <= 0)
+        if (f_TurretHealth <= 0)
         {
-            Destroy(gameObject);
+            TurretDeath();
         }
     }
 
@@ -114,6 +114,13 @@ public class TurretAggro : MonoBehaviour
                 hit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, 10);
             }
         }
+    }
+
+    void TurretDeath()
+    {
+        //give player xp
+        //spawn any particle effects
+        Destroy(gameObject);
     }
 
     void TurretShot(float damage)
