@@ -12,12 +12,21 @@ public class WeaponHandler : MonoBehaviour
     public int m_iShotgunAmmoCount;
     public int m_iPistolAmmoCount;
     public int m_iRifleAmmoCount;
+    private int[] m_arriGunLevels; // 0 = pistol, 1 = shotgun, 2 = rifle
+    private float[] m_arrfGunEXP; // 0 = pistol, 1 = shotgun, 2 = rifle
     public GameObject[] m_goWeapons;
     public GameObject m_goShotHitOBJ;
     public static GameObject m_gActiveWeapon;
     // Use this for initialization
     void Start()
     {
+        m_arriGunLevels = new int[3];
+        m_arrfGunEXP = new float[3];
+        for (int i = 0; i < 3; i++)
+        {
+            m_arriGunLevels[i] = 1;
+            m_arrfGunEXP[i] = 0.0f;
+        }
         m_bPlayerCanShoot = true;
         m_iPlayerHeldShoot = 0;
         m_iCurrentWeapon = 0;
@@ -53,8 +62,42 @@ public class WeaponHandler : MonoBehaviour
         m_gActiveWeapon = m_goWeapons[m_iCurrentWeapon];
     }
 
-    private void CheckHit(RaycastHit _h)
+    private float DetermineDamage(RaycastHit _h) // int or float depending on what we store npc/player health as???
     {
+        var _iResult = 2.0f;
+        switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType)
+        {
+            case WeaponStats.WeaponType.PISTOL:
+                {
+                    //_iResult = (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower * m_arriGunLevels[0]/ (_h.distance/10));
+                    _iResult = (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower * m_arriGunLevels[2]);
+                    break;
+                }
+            case WeaponStats.WeaponType.SHOTGUN:
+                {
+                    // _iResult = (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower * m_arriGunLevels[1] / (_h.distance / 10));
+                    _iResult = (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower * m_arriGunLevels[2]);
+                    break;
+                }
+            case WeaponStats.WeaponType.RIFLE:
+                {
+                    // _iResult = (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower * m_arriGunLevels[2] / (_h.distance / 10));
+                    _iResult = (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower * m_arriGunLevels[2]);
+                    break;
+                }
+            default:
+                break;
+        }
+
+        print("DAMAGE TO DEAL: " + _iResult);
+         
+
+        return _iResult;
+    }
+
+    private void CheckHit(RaycastHit _h, float _fDamageToApply)
+    {
+
         if (_h.transform.tag == "Turret")
         {
             _h.transform.SendMessage("TurretShot", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower);
@@ -74,6 +117,7 @@ public class WeaponHandler : MonoBehaviour
             GameObject pInstance = Instantiate(m_goShotHitOBJ, _h.point, Quaternion.identity);
             pInstance.transform.up = _h.normal;
         }
+        
     }
 
     private void FireRateRefresh()
@@ -84,6 +128,7 @@ public class WeaponHandler : MonoBehaviour
     private void GenerateGunShot()
     {
         RaycastHit hit;
+        float _fDamageToApply;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         Vector3 last_direction = new Vector3(0,0);
         int _iWidth = Screen.width / 2;
@@ -95,8 +140,8 @@ public class WeaponHandler : MonoBehaviour
                     Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
                     if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
                     {
-                        print(hit.transform.name);
-                        CheckHit(hit);
+                    _fDamageToApply = DetermineDamage(hit);
+                        CheckHit(hit, _fDamageToApply);
                     }
                     break;
             case WeaponStats.WeaponType.SHOTGUN:
@@ -107,8 +152,8 @@ public class WeaponHandler : MonoBehaviour
                         Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
                         if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
                         {
-                            print(hit.transform.name);
-                            CheckHit(hit);
+                        _fDamageToApply = DetermineDamage(hit);
+                            CheckHit(hit, _fDamageToApply);
                         }
                     }
                     break;
@@ -118,8 +163,8 @@ public class WeaponHandler : MonoBehaviour
                     Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
                     if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
                     {
-                        print(hit.transform.name);
-                        CheckHit(hit);
+                    _fDamageToApply = DetermineDamage(hit);
+                        CheckHit(hit, _fDamageToApply);
                     }
                     break;
             }

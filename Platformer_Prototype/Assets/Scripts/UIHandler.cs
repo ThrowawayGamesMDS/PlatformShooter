@@ -38,8 +38,8 @@ public class UIHandler : MonoBehaviour
             m_sCurrentWeapon = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName;
             m_tDisplay1.text = "Weapon: " + m_sCurrentWeapon;
             m_tDisplay2.text = "Ammo: " + WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount;
-            m_tDisplay3.text = "Weapon Level: " + WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iWeaponLevel;
-            m_tDisplay4.text = "Weapon EXP: " + WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fWeaponEXP;
+            //m_tDisplay3.text = "Weapon Level: " + WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iWeaponLevel;
+            //m_tDisplay4.text = "Weapon EXP: " + WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fWeaponEXP;
         }
 	}
 	

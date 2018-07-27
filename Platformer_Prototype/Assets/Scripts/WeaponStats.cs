@@ -9,11 +9,7 @@ public class WeaponStats : MonoBehaviour
         PISTOL = 0, SHOTGUN = 1, RIFLE = 2
     }
 
-    public float m_fWeaponPower;
-    public int m_iMagazineCapacity;
-    public int m_iWeaponLevel;
     public WeaponType m_eWeaponType;
-    public float m_fWeaponEXP;
     public float m_fPower;
     public float m_fFireRate;
     public string m_sWeaponType;
@@ -22,11 +18,6 @@ public class WeaponStats : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        m_fPower = m_fWeaponPower;
-       // m_sWeaponType = DetermineType();
-        m_iMagCount = m_iMagazineCapacity;
-        //m_fWeaponEXP = 0.0f;
-        //m_iWeaponLevel = 1;
     }
 	
     /*private string DetermineType()
