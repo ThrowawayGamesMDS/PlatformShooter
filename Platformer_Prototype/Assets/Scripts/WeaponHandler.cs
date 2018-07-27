@@ -125,6 +125,53 @@ public class WeaponHandler : MonoBehaviour
         m_bPlayerCanShoot = true;
     }
 
+    private RaycastHit GenerateRayShot(float _fDispersionRange, float _fShotDistance, bool _bAccuracyVarianceActivated)
+    {
+        RaycastHit hit;
+        //Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(0, 0));
+        int _iWidth = Screen.width / 2;
+        int _iHeight = Screen.height / 2;
+
+        switch (_bAccuracyVarianceActivated)
+        {
+            case true:
+                {
+                    switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType)
+                    {
+                        case WeaponStats.WeaponType.SHOTGUN:
+                            {
+                                ray = Camera.main.ScreenPointToRay(new Vector3(Random.Range(_iWidth - _fDispersionRange, _iWidth + _fDispersionRange),
+                                        Random.Range(_iHeight - _fDispersionRange, _iHeight + _fDispersionRange / 2)));
+                                break;
+                            }
+                        case WeaponStats.WeaponType.RIFLE:
+                            {
+                                ray = Camera.main.ScreenPointToRay(new Vector3(Random.Range(_iWidth - _fDispersionRange, _iWidth + _fDispersionRange),
+                                        Random.Range(_iHeight - _fDispersionRange, _iHeight + _fDispersionRange)));
+                                break;
+                            }
+                    }
+                    break;
+                }
+            case false:
+                {
+                    ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+                    break;
+                }
+        }
+        print("running updated hit registrations");
+        Debug.DrawRay(ray.origin, ray.direction * _fShotDistance, new Color(1f, 0.922f, 0.016f, 1f));
+        if (Physics.Raycast(ray.origin, ray.direction * _fShotDistance, out hit, 250.0f))
+        {
+            return hit;
+        }
+        else 
+        {
+            return hit;
+        }
+    }
+
     private void GenerateGunShot()
     {
         RaycastHit hit;
@@ -137,35 +184,22 @@ public class WeaponHandler : MonoBehaviour
             switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType)
             {
                 case WeaponStats.WeaponType.PISTOL:
-                    Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
-                    if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
-                    {
+                    hit = GenerateRayShot(0,35,false);
                     _fDamageToApply = DetermineDamage(hit);
-                        CheckHit(hit, _fDamageToApply);
-                    }
+                    CheckHit(hit, _fDamageToApply);
                     break;
             case WeaponStats.WeaponType.SHOTGUN:
                 for (int i = 0; i < 9; i++) // random shotgun pellet variance
                     {
-                        ray = Camera.main.ScreenPointToRay(new Vector3(Random.Range(_iWidth - m_iShotgunPelletDispersionRange, _iWidth + m_iShotgunPelletDispersionRange),
-                            Random.Range(_iHeight - m_iShotgunPelletDispersionRange, _iHeight + m_iShotgunPelletDispersionRange/2)));
-                        Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
-                        if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
-                        {
+                        hit = GenerateRayShot(m_iShotgunPelletDispersionRange, 15, true);
                         _fDamageToApply = DetermineDamage(hit);
-                            CheckHit(hit, _fDamageToApply);
-                        }
+                        CheckHit(hit, _fDamageToApply);
                     }
                     break;
             case WeaponStats.WeaponType.RIFLE:
-                ray = Camera.main.ScreenPointToRay(new Vector3(Random.Range(_iWidth - m_iRifleBulletDispersionRange, _iWidth + m_iRifleBulletDispersionRange),
-                           Random.Range(_iHeight - m_iRifleBulletDispersionRange, _iHeight + m_iRifleBulletDispersionRange)));
-                    Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
-                    if (Physics.Raycast(ray.origin, ray.direction * 1000, out hit, 250.0f))
-                    {
-                    _fDamageToApply = DetermineDamage(hit);
-                        CheckHit(hit, _fDamageToApply);
-                    }
+                hit = GenerateRayShot(m_iRifleBulletDispersionRange, 55, true);
+                _fDamageToApply = DetermineDamage(hit);
+                CheckHit(hit, _fDamageToApply);
                     break;
             }
         Invoke("FireRateRefresh", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fFireRate);

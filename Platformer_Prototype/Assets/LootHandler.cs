@@ -106,7 +106,7 @@ public class LootHandler : MonoBehaviour
                 // Move our position a step closer to the target.
                 transform.position = Vector3.MoveTowards(transform.position, m_tTarget.position, step);
             }
-            else
+            if (Vector3.Distance(transform.position, m_tTarget.transform.position) < 1) 
             {
                 ApplyLootableToPlayer();
                 Destroy(gameObject);
