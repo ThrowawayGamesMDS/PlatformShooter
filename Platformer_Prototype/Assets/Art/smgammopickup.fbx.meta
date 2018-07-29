@@ -1,26 +1,14 @@
 fileFormatVersion: 2
-guid: 57dbe2669c0d45649bffb091ca954637
+guid: ffbdee13592087d44a17161f9d9276d9
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: InnerBody
-    100004: OuterWings
-    100006: PayloadBone
-    100008: TurretP_Payload
-    100010: TurretPayload
     400000: //RootNode
-    400002: InnerBody
-    400004: OuterWings
-    400006: PayloadBone
-    400008: TurretP_Payload
-    400010: TurretPayload
-    2100000: lambert1
+    2100000: lambert4
     2300000: //RootNode
-    2300002: TurretP_Payload
     3300000: //RootNode
-    3300002: TurretP_Payload
-    4300000: TurretP_Payload
+    4300000: smg_ammo
   externalObjects: {}
   materials:
     importMaterials: 1

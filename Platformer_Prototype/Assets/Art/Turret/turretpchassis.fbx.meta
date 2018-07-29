@@ -1,26 +1,25 @@
 fileFormatVersion: 2
-guid: 57dbe2669c0d45649bffb091ca954637
+guid: ca838c8775fb43046bc30b25e5dbaafe
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: InnerBody
-    100004: OuterWings
-    100006: PayloadBone
-    100008: TurretP_Payload
-    100010: TurretPayload
-    400000: //RootNode
-    400002: InnerBody
-    400004: OuterWings
-    400006: PayloadBone
-    400008: TurretP_Payload
-    400010: TurretPayload
-    2100000: lambert1
-    2300000: //RootNode
-    2300002: TurretP_Payload
-    3300000: //RootNode
-    3300002: TurretP_Payload
-    4300000: TurretP_Payload
+    100000: InnerBody
+    100002: OuterWings
+    100004: PayloadBone
+    100006: TurretP_Chassis
+    100008: TurretPayload
+    100010: //RootNode
+    400000: InnerBody
+    400002: OuterWings
+    400004: PayloadBone
+    400006: TurretP_Chassis
+    400008: TurretPayload
+    400010: //RootNode
+    2100000: lambert3
+    4300000: TurretP_Chassis
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: TurretP_Chassis
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -96,7 +95,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

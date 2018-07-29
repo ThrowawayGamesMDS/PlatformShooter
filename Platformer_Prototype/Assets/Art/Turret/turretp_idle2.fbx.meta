@@ -1,26 +1,39 @@
 fileFormatVersion: 2
-guid: 57dbe2669c0d45649bffb091ca954637
+guid: 7740094cc1187be4bba3fc5ab99cfda2
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: InnerBody
-    100004: OuterWings
-    100006: PayloadBone
-    100008: TurretP_Payload
-    100010: TurretPayload
-    400000: //RootNode
-    400002: InnerBody
-    400004: OuterWings
-    400006: PayloadBone
-    400008: TurretP_Payload
-    400010: TurretPayload
+    100000: InnerBody
+    100002: OuterWings
+    100004: PayloadBone
+    100006: TurretP_Base
+    100008: TurretP_Chassis
+    100010: //RootNode
+    100012: TurretP_Payload
+    100014: TurretP_Ring
+    100016: TurretPayload
+    400000: InnerBody
+    400002: OuterWings
+    400004: PayloadBone
+    400006: TurretP_Base
+    400008: TurretP_Chassis
+    400010: //RootNode
+    400012: TurretP_Payload
+    400014: TurretP_Ring
+    400016: TurretPayload
     2100000: lambert1
-    2300000: //RootNode
-    2300002: TurretP_Payload
-    3300000: //RootNode
-    3300002: TurretP_Payload
-    4300000: TurretP_Payload
+    2100002: lambert3
+    2300000: TurretP_Base
+    3300000: TurretP_Base
+    4300000: TurretP_Base
+    4300002: TurretP_Ring
+    4300004: TurretP_Chassis
+    4300006: TurretP_Payload
+    7400000: idle2
+    9500000: //RootNode
+    13700000: TurretP_Chassis
+    13700002: TurretP_Payload
+    13700004: TurretP_Ring
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -96,7 +109,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

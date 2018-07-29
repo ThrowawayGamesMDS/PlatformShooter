@@ -1,16 +1,41 @@
 fileFormatVersion: 2
-guid: c5dbec8b6b8adc44f81127f3ba521c2c
+guid: a9dcc027261db5b48bdbbd8cfe18a3be
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: KMUS_Character
-    400000: //RootNode
-    400002: KMUS_Character
-    2100000: KMUS_CharacterMat
-    2300000: KMUS_Character
-    3300000: KMUS_Character
-    4300000: KMUS_Character
+    100000: barrel_r
+    100002: bicep_r
+    100004: GunHandle_r
+    100006: hand_r
+    100008: indext_r
+    100010: Infusor1:Infusor
+    100012: lowerarm_r
+    100014: Pistol
+    100016: //RootNode
+    100018: root
+    100020: shoulder_r
+    100022: spine
+    100024: trigger_r
+    100026: waist
+    400000: barrel_r
+    400002: bicep_r
+    400004: GunHandle_r
+    400006: hand_r
+    400008: indext_r
+    400010: Infusor1:Infusor
+    400012: lowerarm_r
+    400014: Pistol
+    400016: //RootNode
+    400018: root
+    400020: shoulder_r
+    400022: spine
+    400024: trigger_r
+    400026: waist
+    2100000: gun_infusor1
+    4300000: Infusor1:Infusor
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Infusor1:Infusor
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +111,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

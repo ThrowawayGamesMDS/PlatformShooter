@@ -1,26 +1,53 @@
 fileFormatVersion: 2
-guid: 57dbe2669c0d45649bffb091ca954637
+guid: 3a6640806ed7dca41aebe96f5d90defb
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: InnerBody
-    100004: OuterWings
-    100006: PayloadBone
-    100008: TurretP_Payload
-    100010: TurretPayload
-    400000: //RootNode
-    400002: InnerBody
-    400004: OuterWings
-    400006: PayloadBone
-    400008: TurretP_Payload
-    400010: TurretPayload
-    2100000: lambert1
-    2300000: //RootNode
-    2300002: TurretP_Payload
-    3300000: //RootNode
-    3300002: TurretP_Payload
-    4300000: TurretP_Payload
+    100000: barrel_r
+    100002: bicep_r
+    100004: GunHandle_r
+    100006: hand_r
+    100008: indext_r
+    100010: littlem_r
+    100012: littlet_r
+    100014: lowerarm_r
+    100016: middlet_r
+    100018: p_chassis:Chassis
+    100020: Pistol
+    100022: //RootNode
+    100024: ringt_r
+    100026: root
+    100028: shoulder_r
+    100030: spine
+    100032: thumbm_r
+    100034: thumbt_r
+    100036: trigger_r
+    100038: waist
+    400000: barrel_r
+    400002: bicep_r
+    400004: GunHandle_r
+    400006: hand_r
+    400008: indext_r
+    400010: littlem_r
+    400012: littlet_r
+    400014: lowerarm_r
+    400016: middlet_r
+    400018: p_chassis:Chassis
+    400020: Pistol
+    400022: //RootNode
+    400024: ringt_r
+    400026: root
+    400028: shoulder_r
+    400030: spine
+    400032: thumbm_r
+    400034: thumbt_r
+    400036: trigger_r
+    400038: waist
+    2100000: gun_chassis
+    4300000: p_chassis:Chassis
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: p_chassis:Chassis
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -96,7 +123,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -1,26 +1,41 @@
 fileFormatVersion: 2
-guid: 57dbe2669c0d45649bffb091ca954637
+guid: 2c4a13f4f270b3d469d1c7464af3c45b
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: InnerBody
-    100004: OuterWings
-    100006: PayloadBone
-    100008: TurretP_Payload
-    100010: TurretPayload
-    400000: //RootNode
-    400002: InnerBody
-    400004: OuterWings
-    400006: PayloadBone
-    400008: TurretP_Payload
-    400010: TurretPayload
-    2100000: lambert1
-    2300000: //RootNode
-    2300002: TurretP_Payload
-    3300000: //RootNode
-    3300002: TurretP_Payload
-    4300000: TurretP_Payload
+    100000: bicep_r
+    100002: GunHandle_r
+    100004: hand_r
+    100006: lowerarm_r
+    100008: middlet_r
+    100010: p_trigger:Trigger
+    100012: Pistol
+    100014: //RootNode
+    100016: ringt_r
+    100018: root
+    100020: shoulder_r
+    100022: spine
+    100024: trigger_r
+    100026: waist
+    400000: bicep_r
+    400002: GunHandle_r
+    400004: hand_r
+    400006: lowerarm_r
+    400008: middlet_r
+    400010: p_trigger:Trigger
+    400012: Pistol
+    400014: //RootNode
+    400016: ringt_r
+    400018: root
+    400020: shoulder_r
+    400022: spine
+    400024: trigger_r
+    400026: waist
+    2100000: gun_trigger
+    4300000: p_trigger:Trigger
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: p_trigger:Trigger
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -96,7 +111,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

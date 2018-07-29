@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0fd55338d5972504e8f30a5e7c5b19b2
+guid: dc5c6635f1723e34aac6ede24d4e45dc
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -34,33 +34,35 @@ ModelImporter:
     100056: littlet_r
     100058: lowerarm_l
     100060: lowerarm_r
-    100062: middleb_l
-    100064: middleb_r
-    100066: middlem_l
-    100068: middlem_r
-    100070: middlet_l
-    100072: middlet_r
-    100074: neck
-    100076: ringb_l
-    100078: ringb_r
-    100080: ringm_l
-    100082: ringm_r
-    100084: ringt_l
-    100086: ringt_r
-    100088: root
-    100090: shoulder_l
-    100092: shoulder_r
-    100094: spine
-    100096: thigh_l
-    100098: thigh_r
-    100100: thumbb_l
-    100102: thumbb_r
-    100104: thumbm_l
-    100106: thumbm_r
-    100108: thumbt_l
-    100110: thumbt_r
-    100112: trigger_r
-    100114: waist
+    100062: Mesh
+    100064: middleb_l
+    100066: middleb_r
+    100068: middlem_l
+    100070: middlem_r
+    100072: middlet_l
+    100074: middlet_r
+    100076: neck
+    100078: ringb_l
+    100080: ringb_r
+    100082: ringm_l
+    100084: ringm_r
+    100086: ringt_l
+    100088: ringt_r
+    100090: root
+    100092: shoulder_l
+    100094: shoulder_r
+    100096: Skeleton
+    100098: spine
+    100100: thigh_l
+    100102: thigh_r
+    100104: thumbb_l
+    100106: thumbb_r
+    100108: thumbm_l
+    100110: thumbm_r
+    100112: thumbt_l
+    100114: thumbt_r
+    100116: trigger_r
+    100118: waist
     400000: ankle_l
     400002: ankle_r
     400004: barrel_r
@@ -92,33 +94,35 @@ ModelImporter:
     400056: littlet_r
     400058: lowerarm_l
     400060: lowerarm_r
-    400062: middleb_l
-    400064: middleb_r
-    400066: middlem_l
-    400068: middlem_r
-    400070: middlet_l
-    400072: middlet_r
-    400074: neck
-    400076: ringb_l
-    400078: ringb_r
-    400080: ringm_l
-    400082: ringm_r
-    400084: ringt_l
-    400086: ringt_r
-    400088: root
-    400090: shoulder_l
-    400092: shoulder_r
-    400094: spine
-    400096: thigh_l
-    400098: thigh_r
-    400100: thumbb_l
-    400102: thumbb_r
-    400104: thumbm_l
-    400106: thumbm_r
-    400108: thumbt_l
-    400110: thumbt_r
-    400112: trigger_r
-    400114: waist
+    400062: Mesh
+    400064: middleb_l
+    400066: middleb_r
+    400068: middlem_l
+    400070: middlem_r
+    400072: middlet_l
+    400074: middlet_r
+    400076: neck
+    400078: ringb_l
+    400080: ringb_r
+    400082: ringm_l
+    400084: ringm_r
+    400086: ringt_l
+    400088: ringt_r
+    400090: root
+    400092: shoulder_l
+    400094: shoulder_r
+    400096: Skeleton
+    400098: spine
+    400100: thigh_l
+    400102: thigh_r
+    400104: thumbb_l
+    400106: thumbb_r
+    400108: thumbm_l
+    400110: thumbm_r
+    400112: thumbt_l
+    400114: thumbt_r
+    400116: trigger_r
+    400118: waist
     2100000: bodymain
     2100002: black
     2100004: Emission

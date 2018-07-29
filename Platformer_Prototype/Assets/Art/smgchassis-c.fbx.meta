@@ -1,26 +1,60 @@
 fileFormatVersion: 2
-guid: 57dbe2669c0d45649bffb091ca954637
+guid: 96202cf8fb569d449988049057a63fd9
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: InnerBody
-    100004: OuterWings
-    100006: PayloadBone
-    100008: TurretP_Payload
-    100010: TurretPayload
-    400000: //RootNode
-    400002: InnerBody
-    400004: OuterWings
-    400006: PayloadBone
-    400008: TurretP_Payload
-    400010: TurretPayload
-    2100000: lambert1
-    2300000: //RootNode
-    2300002: TurretP_Payload
-    3300000: //RootNode
-    3300002: TurretP_Payload
-    4300000: TurretP_Payload
+    100000: barrel_r
+    100002: bicep_r
+    100004: GunHandle_r
+    100006: hand_r
+    100008: indexm_r
+    100010: indext_r
+    100012: littleb_r
+    100014: littlem_r
+    100016: littlet_r
+    100018: lowerarm_r
+    100020: middlet_r
+    100022: ringt_r
+    100024: root
+    100026: shoulder_r
+    100028: SMG
+    100030: smg_chassis
+    100032: //RootNode
+    100034: spine
+    100036: thumbb_r
+    100038: thumbm_r
+    100040: thumbt_r
+    100042: trigger_r
+    100044: waist
+    400000: barrel_r
+    400002: bicep_r
+    400004: GunHandle_r
+    400006: hand_r
+    400008: indexm_r
+    400010: indext_r
+    400012: littleb_r
+    400014: littlem_r
+    400016: littlet_r
+    400018: lowerarm_r
+    400020: middlet_r
+    400022: ringt_r
+    400024: root
+    400026: shoulder_r
+    400028: SMG
+    400030: smg_chassis
+    400032: //RootNode
+    400034: spine
+    400036: thumbb_r
+    400038: thumbm_r
+    400040: thumbt_r
+    400042: trigger_r
+    400044: waist
+    2100000: shotmachrough1_lambert2
+    2100002: lambert1
+    4300000: smg_chassis
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: smg_chassis
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -96,7 +130,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
