@@ -95,12 +95,25 @@ public class WeaponHandler : MonoBehaviour
         return _iResult;
     }
 
+    private bool PlayerHitSomething(RaycastHit _h)
+    {
+        if (_h.transform != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void CheckHit(RaycastHit _h, float _fDamageToApply)
     {
 
         if (_h.transform.tag == "Turret")
         {
-            _h.transform.SendMessage("TurretShot", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower);
+            Debug.Log("turret shot");
+            _h.transform.SendMessage("TurretShot", _fDamageToApply);
         }
         else if (_h.transform.tag == "Ground")
         {
@@ -110,7 +123,6 @@ public class WeaponHandler : MonoBehaviour
         else if (_h.transform.tag == "AMMO_BOX")
         {
             _h.transform.SendMessage("SpawnTheLoot");
-            print("Spawn AMMO!");
         }
         else
         {
@@ -160,7 +172,6 @@ public class WeaponHandler : MonoBehaviour
                     break;
                 }
         }
-        print("running updated hit registrations");
         Debug.DrawRay(ray.origin, ray.direction * _fShotDistance, new Color(1f, 0.922f, 0.016f, 1f));
         if (Physics.Raycast(ray.origin, ray.direction * _fShotDistance, out hit, 250.0f))
         {
@@ -174,6 +185,7 @@ public class WeaponHandler : MonoBehaviour
 
     private void GenerateGunShot()
     {
+        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().playSound();
         RaycastHit hit;
         float _fDamageToApply;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
@@ -185,22 +197,31 @@ public class WeaponHandler : MonoBehaviour
             {
                 case WeaponStats.WeaponType.PISTOL:
                     hit = GenerateRayShot(0,35,false);
-                    _fDamageToApply = DetermineDamage(hit);
-                    CheckHit(hit, _fDamageToApply);
-                    break;
-            case WeaponStats.WeaponType.SHOTGUN:
-                for (int i = 0; i < 9; i++) // random shotgun pellet variance
+                    if (PlayerHitSomething(hit) == true)
                     {
-                        hit = GenerateRayShot(m_iShotgunPelletDispersionRange, 15, true);
                         _fDamageToApply = DetermineDamage(hit);
                         CheckHit(hit, _fDamageToApply);
                     }
+                break;
+            case WeaponStats.WeaponType.SHOTGUN:
+                for (int i = 0; i < 9; i++) // random shotgun pellet variance
+                {
+                    hit = GenerateRayShot(m_iShotgunPelletDispersionRange, 15, true);
+                    if (PlayerHitSomething(hit))
+                    {
+                        _fDamageToApply = DetermineDamage(hit);
+                        CheckHit(hit, _fDamageToApply);
+                    }
+                }
                     break;
             case WeaponStats.WeaponType.RIFLE:
                 hit = GenerateRayShot(m_iRifleBulletDispersionRange, 55, true);
-                _fDamageToApply = DetermineDamage(hit);
-                CheckHit(hit, _fDamageToApply);
-                    break;
+                if (PlayerHitSomething(hit))
+                {
+                    _fDamageToApply = DetermineDamage(hit);
+                    CheckHit(hit, _fDamageToApply);
+                }
+                break;
             }
         Invoke("FireRateRefresh", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fFireRate);
         m_bPlayerCanShoot = false;
@@ -237,7 +258,7 @@ public class WeaponHandler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && m_bPlayerCanShoot) // player shooting
         {
-            if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName != "Rifle")
+            if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType != WeaponStats.WeaponType.RIFLE)
             {
                 GenerateGunShot();
             }
@@ -245,7 +266,7 @@ public class WeaponHandler : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && m_bPlayerCanShoot)
         {
-           if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName == "Rifle")
+           if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType == WeaponStats.WeaponType.RIFLE)
             {
                 GenerateGunShot();
             }
@@ -253,34 +274,33 @@ public class WeaponHandler : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            switch(WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName)
+            switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType)
             {
-                case "Pistol":
+                case WeaponStats.WeaponType.PISTOL:
                     break;
-                case "Shonny":
-                    m_iShotgunPelletDispersionRange = 17;
-                    break;
-                case "Rifle":
+                case WeaponStats.WeaponType.RIFLE:
                     m_iRifleBulletDispersionRange = 5;
                     break;
-
+                case WeaponStats.WeaponType.SHOTGUN:
+                    m_iShotgunPelletDispersionRange = 17;
+                    break;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse1)) // player shooting
         {
-            switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_sWeaponName)
+            switch (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType)
             {
-                case "Pistol":
+                case WeaponStats.WeaponType.PISTOL:
                     break;
-                case "Shonny":
-                    m_iShotgunPelletDispersionRange = 35;
-                    break;
-                case "Rifle":
+                case WeaponStats.WeaponType.RIFLE:
                     m_iRifleBulletDispersionRange = 10;
                     break;
-
+                case WeaponStats.WeaponType.SHOTGUN:
+                    m_iShotgunPelletDispersionRange = 35;
+                    break;
             }
+
         }
 
         if (m_iCurrentWeapon > 2 || m_iCurrentWeapon < 0)

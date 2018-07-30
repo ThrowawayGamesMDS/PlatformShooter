@@ -8,7 +8,7 @@ public class WeaponStats : MonoBehaviour
     {
         PISTOL = 0, SHOTGUN = 1, RIFLE = 2
     }
-
+    public AudioSource src;
     public WeaponType m_eWeaponType;
     public float m_fPower;
     public float m_fFireRate;
@@ -48,5 +48,9 @@ public class WeaponStats : MonoBehaviour
 	void Update ()
     {
 
+    }
+    public void playSound()
+    {
+        src.Play();
     }
 }

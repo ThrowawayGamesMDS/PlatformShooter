@@ -13,6 +13,8 @@ TagManager:
   - AMMO_BOX
   - WEAPON_HANDLER
   - PlayerCentre
+  - Weapon
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - player
   - 
   - 
   - 
