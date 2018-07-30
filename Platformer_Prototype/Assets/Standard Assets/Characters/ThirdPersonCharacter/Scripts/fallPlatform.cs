@@ -8,10 +8,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     {
         public bool Falling = false;
         public float time = 60;
-        // Use this for initialization
-        void Start()
+        public float Dtime = 300;
+        public GameObject death;
+        Vector3 deathcor;
+       // Use this for initialization
+       void Start()
         {
-           
+            deathcor = (transform.position);
         }
 
         // Update is called once per frame
@@ -22,7 +25,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 if (time == 0)
                 {
                     var move = new Vector3(0, -1, 0);
+                    if (Dtime == 0)
+                    {
+                      
+                        GameObject die = Instantiate(death, deathcor, Quaternion.identity);
+                       
+                        
+                        Destroy(gameObject); 
+                    }
+                   
                     transform.position += move * 2.5f * Time.deltaTime;
+                    Dtime--;
                 }
                 else
                 {
