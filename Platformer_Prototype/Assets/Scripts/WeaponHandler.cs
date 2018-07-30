@@ -113,7 +113,7 @@ public class WeaponHandler : MonoBehaviour
         if (_h.transform.tag == "Turret")
         {
             Debug.Log("turret shot");
-            _h.transform.SendMessage("TurretShot", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower);
+            _h.transform.SendMessage("TurretShot", _fDamageToApply);
         }
         else if (_h.transform.tag == "Ground")
         {
@@ -123,7 +123,6 @@ public class WeaponHandler : MonoBehaviour
         else if (_h.transform.tag == "AMMO_BOX")
         {
             _h.transform.SendMessage("SpawnTheLoot");
-            print("Spawn AMMO!");
         }
         else
         {
@@ -198,9 +197,9 @@ public class WeaponHandler : MonoBehaviour
             {
                 case WeaponStats.WeaponType.PISTOL:
                     hit = GenerateRayShot(0,35,false);
-                    _fDamageToApply = DetermineDamage(hit);
                     if (PlayerHitSomething(hit) == true)
                     {
+                        _fDamageToApply = DetermineDamage(hit);
                         CheckHit(hit, _fDamageToApply);
                     }
                 break;
@@ -208,18 +207,18 @@ public class WeaponHandler : MonoBehaviour
                 for (int i = 0; i < 9; i++) // random shotgun pellet variance
                 {
                     hit = GenerateRayShot(m_iShotgunPelletDispersionRange, 15, true);
-                    _fDamageToApply = DetermineDamage(hit);
                     if (PlayerHitSomething(hit))
                     {
+                        _fDamageToApply = DetermineDamage(hit);
                         CheckHit(hit, _fDamageToApply);
                     }
                 }
                     break;
             case WeaponStats.WeaponType.RIFLE:
                 hit = GenerateRayShot(m_iRifleBulletDispersionRange, 55, true);
-                _fDamageToApply = DetermineDamage(hit);
                 if (PlayerHitSomething(hit))
                 {
+                    _fDamageToApply = DetermineDamage(hit);
                     CheckHit(hit, _fDamageToApply);
                 }
                 break;
