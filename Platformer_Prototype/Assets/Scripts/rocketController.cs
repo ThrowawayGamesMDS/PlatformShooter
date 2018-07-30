@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class rocketController : MonoBehaviour {
     public float missileSpeed;
-    
+    public AudioSource audiosrc;
     public MeshRenderer mr;
     public float radius;
     public float power;
-    private GameObject playerObj;
+    public GameObject playerObj;
     public GameObject explosion;
     [SerializeField] private bool isMoving;
 	// Use this for initialization
 	void Start () {
         isMoving = true;
-        playerObj = GameObject.FindGameObjectWithTag("PlayerCentre");
+        playerObj = GameObject.Find("playercentre");
         Invoke("Explode", 4);
 	}
 	
@@ -40,6 +40,7 @@ public class rocketController : MonoBehaviour {
         print("Collide");
         isMoving = false;
         missileSpeed = 0;
+        audiosrc.enabled = false;
         mr.enabled = false;
         gameObject.GetComponent<BoxCollider>().enabled = false;
         Instantiate(explosion, transform.position, Quaternion.identity);

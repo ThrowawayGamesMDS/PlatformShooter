@@ -62,7 +62,7 @@ public class LootHandler : MonoBehaviour
         {
             m_eCurrState = m_LootState.ATTRACTED;
            // m_tTarget = other.gameObject.transform;
-            m_tTarget = GameObject.FindGameObjectWithTag("PlayerCentre").transform;
+            m_tTarget = GameObject.Find("playercentre").transform;
 
            // m_v3EndPos = m_tTarget.transform.position;
            // m_v3StartPos = gameObject.transform.position;

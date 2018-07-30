@@ -30,6 +30,7 @@ public class Character : MonoBehaviour
     public int maxJump;
     public bool partent = false;
     public Vector3 savehome;
+    public Animator anim;
     #region Unity Methods
 
     protected virtual void Awake()
@@ -279,6 +280,15 @@ public class Character : MonoBehaviour
     public void Jump()
     {
         this.currentVerticalSpeed = this.MovementSettings.JumpForce;
+        if(this.currentHorizontalSpeed > 0.1)
+        {
+            anim.Play("hipjump");
+        }
+        else
+        {
+            anim.Play("jumpdefault");
+        }
+        
     }
     public void DoubleJump()
     {

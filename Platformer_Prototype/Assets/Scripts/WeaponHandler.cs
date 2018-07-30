@@ -100,6 +100,7 @@ public class WeaponHandler : MonoBehaviour
 
         if (_h.transform.tag == "Turret")
         {
+            Debug.Log("turret shot");
             _h.transform.SendMessage("TurretShot", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fPower);
         }
         else if (_h.transform.tag == "Ground")
@@ -174,6 +175,7 @@ public class WeaponHandler : MonoBehaviour
 
     private void GenerateGunShot()
     {
+        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().playSound();
         RaycastHit hit;
         float _fDamageToApply;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
