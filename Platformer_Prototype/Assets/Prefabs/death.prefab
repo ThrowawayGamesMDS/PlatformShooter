@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114949489443231346}
   m_Layer: 0
   m_Name: death
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,3 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObject: 
+  spawn:
+  - {fileID: 1901811109374746, guid: ed5a1704f016e494bbc70c473931a1ea, type: 2}
+  - {fileID: 1598102203273834, guid: 4f6d0b7274be2b64fa24856ffd39f13e, type: 2}
+  help: 0

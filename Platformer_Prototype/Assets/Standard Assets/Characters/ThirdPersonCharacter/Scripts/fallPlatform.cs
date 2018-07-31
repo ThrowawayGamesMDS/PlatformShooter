@@ -28,9 +28,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                     if (Dtime == 0)
                     {
                       
-                        GameObject die = Instantiate(death, deathcor, Quaternion.identity);
-                       
-                        
                         Destroy(gameObject); 
                     }
                    
@@ -42,14 +39,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                     time--;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                Falling = true;
-            }
+            //if (Input.GetKeyDown(KeyCode.C))
+            //{
+            //    Falling = true;
+            //}
         }
         public void playerON()
         {
-            print("falling");
+            GameObject die = Instantiate(death, deathcor, Quaternion.identity);
+            //print("falling");
             Falling = true;
          
         }

@@ -43,7 +43,7 @@ public class GroundedCharacterState : CharacterStateBase
 
         if (PlayerInput.GetJumpInput())
         {
-            
+            Debug.Log("jump");
             character.Jump();
             this.ToState(character, CharacterStateBase.JUMPING_STATE);
           
@@ -119,21 +119,78 @@ public class GroundedCharacterState : CharacterStateBase
                             Debug.Log("ho");
                             //hitchecker.transform.GetComponent<buttonCaller>().wait();
                             hitchecker.transform.GetComponent<buttonCaller>().stopped = false;
-                            if (character.IsGrounded == true)
-                            {
-                                if (character.partent == false)
-                                {
-                                    character.partent = true;
-
-                                    character.transform.parent = hitchecker.transform;
-                                }
-                            }
+                           
                             delay = 300;
+                        }
+                        if (character.IsGrounded == true)
+                        {
+                            if (character.partent == false)
+                            {
+                                character.partent = true;
+
+                                character.transform.parent = hitchecker.transform;
+                            }
                         }
                         Debug.Log(delay);
                     }
                     break;
-                
+
+                case "Eplatform":
+
+
+                    if (delay <= 0)
+                    {
+                        if (hitchecker.transform.GetComponent<buttonCaller>().stopped == true)
+                        {
+
+                            if (hitchecker.transform.GetComponent<buttonCaller>().Forward == true)
+                            {
+                                hitchecker.transform.GetComponent<buttonCaller>().GoTo = hitchecker.transform.GetComponent<buttonCaller>().GoTo + 1;
+                            }
+                            else
+                            {
+                                hitchecker.transform.GetComponent<buttonCaller>().GoTo = hitchecker.transform.GetComponent<buttonCaller>().GoTo - 1;
+                            }
+
+                            if (hitchecker.transform.GetComponent<buttonCaller>().GoTo == hitchecker.transform.GetComponent<buttonCaller>().place.Length - 1)
+                            {
+                                hitchecker.transform.GetComponent<buttonCaller>().Forward = false;
+                                delay = 300;
+                            }
+                            if (hitchecker.transform.GetComponent<buttonCaller>().GoTo == 0)
+                            {
+                                hitchecker.transform.GetComponent<buttonCaller>().Forward = true;
+                                delay = 300;
+                            }
+                            //if (true)
+                            //{
+                            //    
+                            // hitchecker.transform.GetComponent<buttonCaller>().GoTo = 0;
+                            //hitchecker.transform.GetComponent<buttonCaller>().GoTo = hitchecker.transform.GetComponent<buttonCaller>().GoTo + 1;
+                            //}
+                            //else
+                            //{
+                            //    hitchecker.transform.GetComponent<buttonCaller>().GoTo = hitchecker.transform.GetComponent<buttonCaller>().GoTo-1;
+                            //}
+
+                        }
+
+                        Debug.Log(hitchecker.transform.GetComponent<buttonCaller>().place.Length);
+                        //hitchecker.transform.GetComponent<buttonCaller>().wait();
+                        hitchecker.transform.GetComponent<buttonCaller>().stopped = false;
+                    }
+                        if (character.IsGrounded == true)
+                        {
+                            if (character.partent == false)
+                            {
+                                character.partent = true;
+
+                                character.transform.parent = hitchecker.transform;
+                            }
+                        }
+
+                    
+                    break;
                 default:
                     this.ToState(character, CharacterStateBase.IN_AIR_STATE);
                     break;

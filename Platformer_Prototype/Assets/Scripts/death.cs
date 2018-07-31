@@ -6,6 +6,7 @@ public class death : MonoBehaviour
 {
     //Character character;
     public int deathDrop;
+    public GameObject[] respawn;
 	// Use this for initialization
 	void Start () {
         
@@ -20,6 +21,14 @@ public class death : MonoBehaviour
             GameObject thePlayer = GameObject.Find("ThePlayer");
             Character Self = GetComponent<Character>();
             transform.position = Self.savehome;
+
+
+            respawn = GameObject.FindGameObjectsWithTag("Death");
+
+            for (int i = 0; i < respawn.Length; i++)
+            {
+                respawn[i].GetComponent<reset>().reload();
+            }
         }
         
 	}

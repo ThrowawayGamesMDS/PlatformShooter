@@ -15,6 +15,7 @@ TagManager:
   - PlayerCentre
   - Weapon
   - Turret
+  - Eplatform
   layers:
   - Default
   - TransparentFX
