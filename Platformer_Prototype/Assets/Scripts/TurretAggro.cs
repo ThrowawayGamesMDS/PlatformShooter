@@ -18,6 +18,7 @@ public class TurretAggro : MonoBehaviour
     public GameObject playerObj;
     public float playerForce;
     public float f_TurretHealth;
+    public GameObject flames;
     // Use this for initialization
     void Start()
     {
@@ -121,6 +122,7 @@ public class TurretAggro : MonoBehaviour
     {
         //give player xp
         //spawn any particle effects
+        Instantiate(flames, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
