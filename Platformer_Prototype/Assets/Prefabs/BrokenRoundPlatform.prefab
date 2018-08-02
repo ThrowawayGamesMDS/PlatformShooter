@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901811109374746}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.594252, y: 12.34, z: 69.78579}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 66.14, y: -12.98, z: -67.81}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: da293e9a37df76747bc573435e04c8c7, type: 3}
+  - {fileID: 2100000, guid: ad388daa16930a8438153acea2c7324b, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901811109374746}
-  m_Mesh: {fileID: 4300000, guid: da293e9a37df76747bc573435e04c8c7, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ad388daa16930a8438153acea2c7324b, type: 3}
 --- !u!64 &64371130092895836
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -98,7 +98,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: da293e9a37df76747bc573435e04c8c7, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ad388daa16930a8438153acea2c7324b, type: 3}
 --- !u!114 &114523501520277716
 MonoBehaviour:
   m_ObjectHideFlags: 1
