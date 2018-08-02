@@ -17,6 +17,8 @@ public class WeaponHandler : MonoBehaviour
     public GameObject[] m_goWeapons;
     public GameObject m_goShotHitOBJ;
     public static GameObject m_gActiveWeapon;
+    public int m_iAmmoToSpawn;
+    public bool m_bAmmoSpawned;
 
     public GameObject m_goPlayerObject;
     // Use this for initialization
@@ -24,19 +26,21 @@ public class WeaponHandler : MonoBehaviour
     {
         m_arriGunLevels = new int[3];
         m_arrfGunEXP = new float[3];
+        m_iAmmoToSpawn = 1;
         for (int i = 0; i < 3; i++)
         {
             m_arriGunLevels[i] = 1;
             m_arrfGunEXP[i] = 0.0f;
         }
         m_bPlayerCanShoot = true;
+        m_bAmmoSpawned = false;
         m_iPlayerHeldShoot = 0;
         m_iCurrentWeapon = 0;
         m_iShotgunPelletDispersionRange = 35;
         m_iRifleBulletDispersionRange = 10;
-        m_iShotgunAmmoCount = 10;
-        m_iPistolAmmoCount = 10;
-        m_iRifleAmmoCount = 10;
+        m_iShotgunAmmoCount = 0;
+        m_iPistolAmmoCount = 0;
+        m_iRifleAmmoCount = 0;
         for (int i = 0; i < 3; i++)
         {
             if (i != m_iCurrentWeapon)
@@ -129,7 +133,20 @@ public class WeaponHandler : MonoBehaviour
         }
         else if (_h.transform.tag == "AMMO_BOX")
         {
-            _h.transform.SendMessage("SpawnTheLoot");
+            if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType == WeaponStats.WeaponType.SHOTGUN) // multiple box spawn on shotgun shot bug fix lol
+            {
+                if (!m_bAmmoSpawned) 
+                {
+                    _h.transform.SendMessage("SpawnTheLoot");
+                    m_bAmmoSpawned = true;
+
+                    Invoke("AmmoBoxLootedRefresh", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fFireRate);
+                }
+            }
+            else
+            {
+                _h.transform.SendMessage("SpawnTheLoot");
+            }
         }
         else
         {
@@ -142,6 +159,11 @@ public class WeaponHandler : MonoBehaviour
     private void FireRateRefresh()
     {
         m_bPlayerCanShoot = true;
+    }
+
+    private void AmmoBoxLootedRefresh()
+    {
+        m_bAmmoSpawned = false;
     }
 
     private RaycastHit GenerateRayShot(float _fDispersionRange, float _fShotDistance, bool _bAccuracyVarianceActivated)
@@ -202,6 +224,23 @@ public class WeaponHandler : MonoBehaviour
         {
             _qPlayerDir.y = test.y;
             m_goPlayerObject.transform.rotation = _qPlayerDir;
+            print("Updated player's rotation to face shooting direction");
+        }
+        else
+        {
+            print("Player's direction is already facing in that of the camera");
+        }
+    }
+
+    private void UpdateGunRotationToView()
+    {
+        Quaternion test;
+        test.y = Camera.main.transform.rotation.y;
+        Quaternion _qPlayerDir = WeaponHandler.m_gActiveWeapon.transform.rotation;
+        if (m_goPlayerObject.transform.rotation.y != test.y)
+        {
+            _qPlayerDir.y = test.y;
+            WeaponHandler.m_gActiveWeapon.transform.rotation = _qPlayerDir;
             print("Updated player's rotation to face shooting direction");
         }
         else
@@ -279,6 +318,14 @@ public class WeaponHandler : MonoBehaviour
                 {
                     WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount;
                     WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount = 0;
+                }
+                else if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount < WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCap &&
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount > 0)
+                {
+                    int _iAmmoToReload;
+                    _iAmmoToReload = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCap - WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount;
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount += _iAmmoToReload;
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount -= _iAmmoToReload;
                 }
                 else
                 {
@@ -376,9 +423,79 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
+    private void UpdateGunAmmo(int _iType) // because guns are enabled/disabled we need to update the script bcuz it could be disabled...
+    {
+       //type 0 = pistol, type 1 = rifle, type 2 = shotty..
+       switch(_iType)
+        {
+            case 0:
+                {
+                    if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount <= WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount + m_iPistolAmmoCount)
+                    {
+                        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount;
+                    }
+                    else
+                    {
+                        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount += m_iPistolAmmoCount;
+                    }
+                    m_iPistolAmmoCount = 0;
+                    break;
+                }
+            case 1:
+                {
+                    if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount <= WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount + m_iRifleAmmoCount)
+                    {
+                        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount;
+                    }
+                    else
+                    {
+                        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount += m_iRifleAmmoCount;
+                    }
+                    m_iRifleAmmoCount = 0;
+                    break;
+                }
+            case 2:
+                {
+                    if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount <= WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount + m_iShotgunAmmoCount)
+                    {
+                        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount;
+                    }
+                    else
+                    {
+                        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount += m_iShotgunAmmoCount;
+                    }
+                    m_iShotgunAmmoCount = 0;
+                    break;
+                }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (m_iShotgunAmmoCount > 0 || m_iRifleAmmoCount > 0 || m_iPistolAmmoCount > 0)
+        {
+            switch(WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType)
+            {
+                case WeaponStats.WeaponType.PISTOL:
+                    {
+
+                        UpdateGunAmmo(0);
+                        break;
+                    }
+                case WeaponStats.WeaponType.RIFLE:
+                    {
+                        UpdateGunAmmo(1);
+                        break;
+                    }
+                case WeaponStats.WeaponType.SHOTGUN:
+                    {
+                        UpdateGunAmmo(2);
+                        break;
+                    }
+            }
+        }
+
         if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount > 0)
         {
             ShootingInput();

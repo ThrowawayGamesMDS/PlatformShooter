@@ -37,6 +37,14 @@ public class LootHandler : MonoBehaviour
         BezierTime = 0;
     }
 
+    private void CheckIfMaxAmmo()
+    {
+        /*if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount + m_iAmount >= WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount)
+        {
+            WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount;
+        }*/
+    }
+
     private void ApplyLootableToPlayer()
     {
         switch (m_eThisLoot)
