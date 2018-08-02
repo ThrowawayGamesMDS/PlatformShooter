@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     public bool partent = false;
     public Vector3 savehome;
     public Animator anim;
+    public static bool m_bPlayerShooting; // for disabling player rotational updates and random shit
     #region Unity Methods
 
     protected virtual void Awake()
@@ -58,6 +59,11 @@ public class Character : MonoBehaviour
     #endregion Unity Methods
 
     public ICharacterState CurrentState { get; set; }
+
+    void Start()
+    {
+        m_bPlayerShooting = false;
+    }
 
     public Vector3 MoveVector
     {
@@ -155,7 +161,10 @@ public class Character : MonoBehaviour
         set
         {
             this.controlRotation = value;
-            this.AlignRotationWithControlRotationY();
+           // if (!m_bPlayerShooting)
+           // {
+                this.AlignRotationWithControlRotationY();
+          //  }
         }
     }
 
@@ -348,7 +357,12 @@ public class Character : MonoBehaviour
 
     private void ApplyMotion()
     {
-        this.OrientRotationToMoveVector(this.MoveVector);
+       // if (!m_bPlayerShooting)
+            this.OrientRotationToMoveVector(this.MoveVector);
+       // else
+      //  {
+        //    this.OrientRotationToMoveVector(this.MoveVector);
+      //  }
 
         Vector3 motion = this.MoveVector * this.currentHorizontalSpeed + Vector3.up * this.currentVerticalSpeed;
         this.controller.Move(motion * Time.deltaTime);
@@ -357,30 +371,32 @@ public class Character : MonoBehaviour
     private bool AlignRotationWithControlRotationY()
     {
         if (this.RotationSettings.UseControlRotation)
-        {
-            this.transform.rotation = Quaternion.Euler(0f, this.ControlRotation.eulerAngles.y, 0f);
-            return true;
-        }
+         {
+             this.transform.rotation = Quaternion.Euler(0f, this.ControlRotation.eulerAngles.y, 0f);
+             return true;
+         }
+         
 
         return false;
     }
 
     private bool OrientRotationToMoveVector(Vector3 moveVector)
     {
-        if (this.RotationSettings.OrientRotationToMovement && moveVector.magnitude > 0f)
-        {
-            Quaternion rotation = Quaternion.LookRotation(moveVector, Vector3.up);
-            if (this.RotationSettings.RotationSmoothing > 0f)
-            {
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, this.RotationSettings.RotationSmoothing * Time.deltaTime);
-            }
-            else
-            {
-                this.transform.rotation = rotation;
-            }
+         if (this.RotationSettings.OrientRotationToMovement && moveVector.magnitude > 0f)
+         {
+             Quaternion rotation = Quaternion.LookRotation(moveVector, Vector3.up);
+             if (this.RotationSettings.RotationSmoothing > 0f)
+             {
+                 gameObject.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, this.RotationSettings.RotationSmoothing * Time.deltaTime);
+             }
+             else
+             {
+                 gameObject.transform.rotation = rotation;
+             }
 
-            return true;
-        }
+             return true;
+         }
+         
 
         return false;
     }

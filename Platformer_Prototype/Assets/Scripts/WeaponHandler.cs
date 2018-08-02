@@ -17,6 +17,8 @@ public class WeaponHandler : MonoBehaviour
     public GameObject[] m_goWeapons;
     public GameObject m_goShotHitOBJ;
     public static GameObject m_gActiveWeapon;
+
+    public GameObject m_goPlayerObject;
     // Use this for initialization
     void Start()
     {
@@ -44,6 +46,11 @@ public class WeaponHandler : MonoBehaviour
         }
         m_gActiveWeapon = m_goWeapons[m_iCurrentWeapon];
         // m_goWeapons = new GameObject[3];
+
+        if (m_goPlayerObject == null)
+        {
+            m_goPlayerObject = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     private void HandleWeaponSwitch()
@@ -183,8 +190,35 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
+    private void PlayerFacingShootingDirection()
+    {
+        
+        Quaternion test;
+        test.y =  Camera.main.transform.rotation.y;
+        Quaternion _qPlayerDir = m_goPlayerObject.transform.rotation;
+        if (m_goPlayerObject.transform.rotation.y != test.y)
+        {
+            _qPlayerDir.y = test.y;
+            m_goPlayerObject.transform.rotation = _qPlayerDir;
+            print("Updated player's rotation to face shooting direction");
+        }
+        else
+        {
+            print("Player's direction is already facing in that of the camera");
+        }
+    }
+
     private void GenerateGunShot()
     {
+        /***
+         * 
+         * Check that the players direction is the same as the camera..
+         * 
+         ***/
+        // update char class that player is shooting
+       // Character.m_bPlayerShooting = true;
+       // PlayerFacingShootingDirection();
+
         WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().playSound();
         RaycastHit hit;
         float _fDamageToApply;
@@ -225,6 +259,7 @@ public class WeaponHandler : MonoBehaviour
             }
         Invoke("FireRateRefresh", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fFireRate);
         m_bPlayerCanShoot = false;
+        Character.m_bPlayerShooting = false;
     }
 
     // Update is called once per frame

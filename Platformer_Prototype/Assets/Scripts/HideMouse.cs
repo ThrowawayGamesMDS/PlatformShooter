@@ -36,4 +36,19 @@ public class HideMouse : MonoBehaviour {
 
         SetCursorState();
     }
+
+    private void Update()
+    {
+
+       /* if (Input.GetAxis("Mouse X") < 0)
+        {
+            gameObject.transform.Rotate(Vector3.up * -5.0f);
+            print("negi");
+        }
+        else if (Input.GetAxis("Mouse X") > 0)
+        {
+            gameObject.transform.Rotate(Vector3.up * 5.0f);
+            print("posi");
+        }*/
+    }
 }
