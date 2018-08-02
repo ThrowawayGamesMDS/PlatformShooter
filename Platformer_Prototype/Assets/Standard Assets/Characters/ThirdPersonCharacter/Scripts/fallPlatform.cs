@@ -46,6 +46,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
         public void playerON()
         {
+           
             GameObject die = Instantiate(death, deathcor, Quaternion.identity);
             //print("falling");
             Falling = true;

@@ -15,6 +15,8 @@ public class playbutton : MonoBehaviour {
 		
 	}
 	public void go(){
-		SceneManager.LoadScene("game");
-	}
+        print("hi");
+        SceneManager.LoadScene("game");
+        print("hi1");
+    }
 }
