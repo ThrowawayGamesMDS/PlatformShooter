@@ -109,6 +109,7 @@ public class LootHandler : MonoBehaviour
             if (Vector3.Distance(transform.position, m_tTarget.transform.position) < 1) 
             {
                 ApplyLootableToPlayer();
+                print("pickup");
                 Destroy(gameObject);
             }
         }
