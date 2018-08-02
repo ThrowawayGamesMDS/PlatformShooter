@@ -2677,7 +2677,7 @@ MonoBehaviour:
   ball: {fileID: 1224317887970998, guid: 50ebd0b135deae846823ca9dded335f1, type: 2}
   playerObj: {fileID: 1224409692}
   playerForce: 60
-  f_TurretHealth: 100
+  f_TurretHealth: 300
 --- !u!65 &723908060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5771,7 +5771,7 @@ RectTransform:
   m_GameObject: {fileID: 1614347722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 248162778}
   m_RootOrder: 0
@@ -5801,7 +5801,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5aa012f533dfc074b8ff919a7ec0b97a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fbf01953df5a2044cbd15c58733333f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5827,6 +5827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a412f934efd5979468d8d6f94af7db93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tr: {fileID: 0}
 --- !u!1 &1620432711
 GameObject:
   m_ObjectHideFlags: 0
@@ -6404,6 +6405,10 @@ Prefab:
       propertyPath: m_TagString
       value: Splatform
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2306314151101a245b9d8b9113a75512, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 754e52aceb4a7b347a28c91f1a57a2a6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2306314151101a245b9d8b9113a75512, type: 3}
   m_IsPrefabParent: 0
