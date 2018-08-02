@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class rocketController : MonoBehaviour {
     public float missileSpeed;
-    
+    public AudioSource audiosrc;
     public MeshRenderer mr;
     public float radius;
     public float power;
-    private GameObject playerObj;
+    public GameObject playerObj;
     public GameObject explosion;
+    public float playerImpactStrength;
     [SerializeField] private bool isMoving;
 	// Use this for initialization
 	void Start () {
         isMoving = true;
-        playerObj = GameObject.FindGameObjectWithTag("PlayerCentre");
+        playerObj = GameObject.Find("playercentre");
         Invoke("Explode", 4);
 	}
 	
@@ -40,6 +41,7 @@ public class rocketController : MonoBehaviour {
         print("Collide");
         isMoving = false;
         missileSpeed = 0;
+        audiosrc.enabled = false;
         mr.enabled = false;
         gameObject.GetComponent<BoxCollider>().enabled = false;
         Instantiate(explosion, transform.position, Quaternion.identity);
@@ -53,7 +55,7 @@ public class rocketController : MonoBehaviour {
             {
                 if (rayhit.transform.gameObject.GetComponent<Character>() != null)
                 {
-                    rayhit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, (100 * (1 - (rayhit.distance / 6))));
+                    rayhit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, (playerImpactStrength * (1 - (rayhit.distance / 6))));
                 }
             }
         }

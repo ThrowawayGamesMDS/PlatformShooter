@@ -33,7 +33,7 @@ public class CheckPoint : MonoBehaviour {
                 {
                     if (hit.transform.tag == "Player")
                     {
-                        hit.transform.GetComponent<Character>().savehome = savepoint;
+                        hit.transform.GetComponent<Character>().savehome = transform.position;
                     }
                     //print("check point");
                 }

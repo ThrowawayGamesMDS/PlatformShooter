@@ -112,3 +112,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Falling: 0
   time: 60
+  Dtime: 300
+  death: {fileID: 1636762325759410, guid: 6c30ab58ceb8e244189238062f060af2, type: 2}

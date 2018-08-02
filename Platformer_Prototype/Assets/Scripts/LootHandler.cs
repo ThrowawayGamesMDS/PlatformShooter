@@ -37,6 +37,14 @@ public class LootHandler : MonoBehaviour
         BezierTime = 0;
     }
 
+    private void CheckIfMaxAmmo()
+    {
+        /*if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount + m_iAmount >= WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount)
+        {
+            WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMaximumAmmoCount;
+        }*/
+    }
+
     private void ApplyLootableToPlayer()
     {
         switch (m_eThisLoot)
@@ -62,7 +70,7 @@ public class LootHandler : MonoBehaviour
         {
             m_eCurrState = m_LootState.ATTRACTED;
            // m_tTarget = other.gameObject.transform;
-            m_tTarget = GameObject.FindGameObjectWithTag("PlayerCentre").transform;
+            m_tTarget = GameObject.Find("playercentre").transform;
 
            // m_v3EndPos = m_tTarget.transform.position;
            // m_v3StartPos = gameObject.transform.position;
@@ -109,6 +117,7 @@ public class LootHandler : MonoBehaviour
             if (Vector3.Distance(transform.position, m_tTarget.transform.position) < 1) 
             {
                 ApplyLootableToPlayer();
+                print("pickup");
                 Destroy(gameObject);
             }
         }

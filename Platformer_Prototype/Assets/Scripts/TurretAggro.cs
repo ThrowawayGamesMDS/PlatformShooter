@@ -16,7 +16,9 @@ public class TurretAggro : MonoBehaviour
     public AudioSource gunShotSound;
     public GameObject ball;
     public GameObject playerObj;
+    public float playerForce;
     public float f_TurretHealth;
+    public GameObject flames;
     // Use this for initialization
     void Start()
     {
@@ -111,7 +113,7 @@ public class TurretAggro : MonoBehaviour
             hit.transform.SendMessage("PlayerShot", 20f);
             if (hit.transform.gameObject.GetComponent<Character>() != null)
             {
-                hit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, 10);
+                hit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, playerForce);
             }
         }
     }
@@ -120,6 +122,7 @@ public class TurretAggro : MonoBehaviour
     {
         //give player xp
         //spawn any particle effects
+        Instantiate(flames, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

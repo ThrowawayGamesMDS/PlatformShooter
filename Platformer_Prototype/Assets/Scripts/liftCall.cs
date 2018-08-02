@@ -21,7 +21,7 @@ public class liftCall : MonoBehaviour {
         raycastDir.y = raycastDir.y + 1.05f;
 
         float a = player.transform.position.y - transform.position.y;
-        print(a);
+        //print(a);
         if ((a >= -2)&&(a <= 2))
          {
        

@@ -6,7 +6,7 @@ public class DropItemHandler : MonoBehaviour
 {
     public GameObject[] m_goDropables; // the items this script is going to drop..
     public int m_iArraySize; // could do a funct to check when the array doesn't equal a go an then it is therefore returned and -1 to equal the size of arr... but fuck it
-
+    public GameObject brokenBox;
 	// Use this for initialization
 	void Start ()
     {
@@ -16,6 +16,7 @@ public class DropItemHandler : MonoBehaviour
     private void SpawnTheLoot()
     {
         GameObject pInstance = Instantiate(m_goDropables[Random.Range(0,m_iArraySize)], this.transform.position, Quaternion.identity);
+        Instantiate(brokenBox, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
