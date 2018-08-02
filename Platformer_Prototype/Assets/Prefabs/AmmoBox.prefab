@@ -1030,8 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_goDropables:
-  - {fileID: 1392023715496284, guid: 699dcc23575fb0b42a09dffe0ea2c36b, type: 2}
-  - {fileID: 1233541025167898, guid: eb28b06271a5a6f4894860eff9b9833a, type: 2}
-  - {fileID: 1439746752102998, guid: 56e64bea3d0d5aa44af7e0f3b8436ee1, type: 2}
-  m_iArraySize: 3
+  - {fileID: 1462102419625876, guid: e0c588f55c66d2e4b91d0f20f8e2653f, type: 2}
+  - {fileID: 1065563180114050, guid: 2cc7489430c85c1458b568bc84c2db7d, type: 2}
+  m_iArraySize: 2
   brokenBox: {fileID: 1967296599675660, guid: 51e43b3461d91544e96a7e032d8bfacc, type: 2}
