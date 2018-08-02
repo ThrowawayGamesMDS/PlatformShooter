@@ -15,7 +15,6 @@ public class RocketTurret : MonoBehaviour {
     public GameObject missile;
     public GameObject playerObj;
     public float f_TurretHealth;
-    public GameObject flames;
 
     // Use this for initialization
     void Start()
@@ -91,18 +90,10 @@ public class RocketTurret : MonoBehaviour {
         }
         if (f_TurretHealth <= 0)
         {
-            TurretDeath();
+            Destroy(gameObject);
         }
     }
 
-
-    void TurretDeath()
-    {
-        //give player xp
-        //spawn any particle effects
-        Instantiate(flames, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-    }
 
     void OnTriggerEnter(Collider other)
     {
