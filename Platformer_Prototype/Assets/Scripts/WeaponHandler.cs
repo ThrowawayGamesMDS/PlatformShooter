@@ -179,6 +179,7 @@ public class WeaponHandler : MonoBehaviour
                     break;
                 }
         }
+
         Debug.DrawRay(ray.origin, ray.direction * _fShotDistance, new Color(1f, 0.922f, 0.016f, 1f));
         if (Physics.Raycast(ray.origin, ray.direction * _fShotDistance, out hit, 250.0f))
         {
@@ -188,6 +189,7 @@ public class WeaponHandler : MonoBehaviour
         {
             return hit;
         }
+        
     }
 
     private void PlayerFacingShootingDirection()
@@ -258,39 +260,45 @@ public class WeaponHandler : MonoBehaviour
                 break;
             }
         Invoke("FireRateRefresh", WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_fFireRate);
+
+        WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount -= 1;
+
         m_bPlayerCanShoot = false;
-        Character.m_bPlayerShooting = false;
+       // Character.m_bPlayerShooting = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ReloadPlayersWeapon()
     {
-        var d = Input.GetAxis("Mouse ScrollWheel");
-        if (d != 0)
+        if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount < WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCap) // can reload bcuz curr mag is less than cap size
         {
-            if (d > 0f)
+            if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount > 0) // player has spare ammo for gun
             {
-                if (m_iCurrentWeapon > 0)
+                // dependening on gun individually load each bull? but meh
+                if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCap == WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount ||
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCap > WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount)
                 {
-                    m_iCurrentWeapon -= 1;
-                    print(m_iCurrentWeapon);
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount;
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount = 0;
                 }
-                // scroll up
-            }
-            else if (d < 0f)
-            {
-                if (m_iCurrentWeapon <= 2)
+                else
                 {
-                    if (m_iCurrentWeapon != 2)
-                    m_iCurrentWeapon += 1;
-
-                    print(m_iCurrentWeapon);
-
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount = WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCap;
+                    WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iAmmoCount -= WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCap;
                 }
             }
-            HandleWeaponSwitch();
         }
+    }
 
+    private void OtherInputHandle()
+    {
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            ReloadPlayersWeapon();
+        }
+    }
+
+    private void ShootingInput()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0) && m_bPlayerCanShoot) // player shooting
         {
             if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType != WeaponStats.WeaponType.RIFLE)
@@ -301,7 +309,7 @@ public class WeaponHandler : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && m_bPlayerCanShoot)
         {
-           if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType == WeaponStats.WeaponType.RIFLE)
+            if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_eWeaponType == WeaponStats.WeaponType.RIFLE)
             {
                 GenerateGunShot();
             }
@@ -337,6 +345,48 @@ public class WeaponHandler : MonoBehaviour
             }
 
         }
+    }
+
+    private void WeaponSwitchInput()
+    {
+        var d = Input.GetAxis("Mouse ScrollWheel");
+        if (d != 0)
+        {
+            if (d > 0f)
+            {
+                if (m_iCurrentWeapon > 0)
+                {
+                    m_iCurrentWeapon -= 1;
+                    print(m_iCurrentWeapon);
+                }
+                // scroll up
+            }
+            else if (d < 0f)
+            {
+                if (m_iCurrentWeapon <= 2)
+                {
+                    if (m_iCurrentWeapon != 2)
+                        m_iCurrentWeapon += 1;
+
+                    print(m_iCurrentWeapon);
+
+                }
+            }
+            HandleWeaponSwitch();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (WeaponHandler.m_gActiveWeapon.GetComponent<WeaponStats>().m_iMagCount > 0)
+        {
+            ShootingInput();
+        }
+
+        WeaponSwitchInput();
+
+        OtherInputHandle();
 
         if (m_iCurrentWeapon > 2 || m_iCurrentWeapon < 0)
         {
