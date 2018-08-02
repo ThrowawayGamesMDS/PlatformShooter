@@ -10,6 +10,7 @@ public class rocketController : MonoBehaviour {
     public float power;
     public GameObject playerObj;
     public GameObject explosion;
+    public float playerImpactStrength;
     [SerializeField] private bool isMoving;
 	// Use this for initialization
 	void Start () {
@@ -54,7 +55,7 @@ public class rocketController : MonoBehaviour {
             {
                 if (rayhit.transform.gameObject.GetComponent<Character>() != null)
                 {
-                    rayhit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, (100 * (1 - (rayhit.distance / 6))));
+                    rayhit.transform.gameObject.GetComponent<Character>().AddImpact(rayDirection, (playerImpactStrength * (1 - (rayhit.distance / 6))));
                 }
             }
         }

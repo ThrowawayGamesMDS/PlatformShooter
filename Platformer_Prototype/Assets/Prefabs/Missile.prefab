@@ -289,6 +289,7 @@ MonoBehaviour:
   power: 1000
   playerObj: {fileID: 0}
   explosion: {fileID: 1388387591576220, guid: d9c753798bc987941b0b5d341018ac91, type: 2}
+  playerImpactStrength: 400
   isMoving: 0
 --- !u!198 &198170965481744770
 ParticleSystem:
